@@ -2,7 +2,7 @@
 
 ## Projet numéro 7 de la formation Openclassrooms Développeur d'Application JavaScript / React
 
-Les Petits Plats est un site web de recettes de cuisine à l’instar de Marmiton ou 750g. L'utilisateur doit pouvoir filtrer les recettes avec des mots clés dans une barre de recherche
+Les Petits Plats est un site web de recettes de cuisine à l’instar de Marmiton ou 750g. L'utilisateur doit pouvoir filtrer les recettes avec des mots clés
 
 ### Objectifs
 
