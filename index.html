@@ -1,22 +1,36 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang='fr'>
 <head>
     <!-- - - - - - - - -    Balises Meta  - - - - - - - - -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1" >
-    <meta name="description" content="Les Petits Plats est un site de recettes de cuisine à l’instar de Marmiton ou 750g">
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1' >
+    <meta name='description' content='Les Petits Plats est un site de recettes de cuisine à l’instar de Marmiton ou 750g'>
     <!-- - - - - - - - -    Title   - - - - - - - - -->
     <title>Les Petits Plats</title>
     <!-- - - - - - - - -    Favicon   - - - - - - - - -->
-    <link rel="icon" type="image/png" href="assets/favicon/favicon.png">
+    <link rel='icon' type='image/png' href='assets/images/favicon.png'>
     <!-- - - - - - - - -    Google font   - - - - - - - - -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap' rel='stylesheet'>
     <!-- - - - - - - - -    Style CSS   - - - - - - - - -->
-    <link href="./styles/output.css" rel="stylesheet" type="text/css">
+    <link href='./styles/output.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
+    <header class="h-600 bg-no-repeat bg-center bg-cover relative flex justify-center align-center flex-col" style="background-image: url('./assets/images/background.jpg');">
+        <div class="py-12 px-14 absolute inset-0">
+            <img class="w-52" src='./assets/images/Logo.png' alt='image logo'>
+        </div>
+        <div class="text-center">
+            <h1 class="text-yellow text-4xl font-anton leading-10 mb-8">CHERCHEZ PARMI PLUS DE 1500 RECETTES <br>DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
+            <form class="relative w-3/5 mx-auto">
+                <input type="text" placeholder="Rechercher une recette, un ingrédient..." class="w-full px-6 py-5 rounded-xl font-manrope">
+                <i class="fa-solid fa-magnifying-glass absolute top-2/4 -translate-y-1/2 right-3 text-3xl bg-slate-950 p-3 text-white rounded-lg cursor-pointer"></i>
+            </form>
+        </div>
+    </header>
     
+    <!-- - - - - - - - -    Icones fontawesome   - - - - - - - - -->
+    <script src="https://kit.fontawesome.com/a8c57682fc.js" crossorigin="anonymous"></script>
 </body>
 </html>
