@@ -22,14 +22,16 @@
     <!-- - - - - - - - -    Style CSS   - - - - - - - - -->
     <link href="./styles/output.css" rel="stylesheet" type="text/css" />
   </head>
-  <body>
+  <body class="box-border">
     <header
       class="h-600 bg-no-repeat bg-center bg-cover relative flex justify-center align-center flex-col"
       style="background-image: url('./assets/images/background.jpg')"
     >
-      <div class="py-12 px-14 absolute inset-0">
-        <img class="w-52" src="./assets/images/Logo.png" alt="image logo" />
-      </div>
+      <img
+        class="w-52 top-12 left-14 absolute inset-0"
+        src="./assets/images/Logo.png"
+        alt="image logo"
+      />
       <div class="text-center">
         <h1 class="text-yellow text-4xl font-anton leading-10 mb-8">
           CHERCHEZ PARMI PLUS DE 1500 RECETTES <br />DU QUOTIDIEN,SIMPLES ET
@@ -52,23 +54,70 @@
     </header>
 
     <main class="bg-gray-300 px-28 py-6">
-        <div class="flex justify-between items-center">
-            <div class="flex">
-                <div class="flex bg-white items-center p-4 rounded-lg mr-14 cursor-pointer">
-                    <h3 class="mr-16">Ingrédients</h3>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="flex bg-white items-center p-4 rounded-lg mr-14 cursor-pointer">
-                    <h3 class="mr-16">Appareils</h3>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="flex bg-white items-center p-4 rounded-lg cursor-pointer">
-                    <h3 class="mr-16">Ustensiles</h3>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-            </div>
-            <span aria-label="nombre de recettes" class="font-anton text-xl">1500 recettes</span>
+      <div class="flex justify-between items-center">
+        <div class="flex">
+          <div
+            class="flex bg-white items-center p-4 rounded-lg mr-14 cursor-pointer"
+          >
+            <h3 class="mr-16">Ingrédients</h3>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div
+            class="flex bg-white items-center p-4 rounded-lg mr-14 cursor-pointer"
+          >
+            <h3 class="mr-16">Appareils</h3>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="flex bg-white items-center p-4 rounded-lg cursor-pointer">
+            <h3 class="mr-16">Ustensiles</h3>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
         </div>
+        <span aria-label="nombre de recettes" class="font-anton text-xl"
+          >1500 recettes</span
+        >
+      </div>
+      <section class="grid gap-20 grid-cols-3 mt-10">
+        <article class="shadow-article">
+          <img
+            src="./assets/recettes/Recette01.jpg"
+            alt="image recettes"
+            class="h-60 w-full object-cover rounded-t-xl"
+          />
+          <div class="bg-white rounded-b-xl px-6 py-7">
+            <h3 class="font-anton mb-8">Limonade de coco</h3>
+            <div>
+              <h4 class="text-gray-500 mb-4">Recette</h4>
+              <p class="mb-8">Mettre les glaçons à votre goût dans le blender, Ajouter le lait  la crème de coco, le jus de 2 citrons et le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée.</p>
+            </div>
+            <div>
+              <h4 class="text-gray-500 mb-4">Ingrédients</h4>
+              <ul class="grid grid-cols-2 gap-y-5">
+                <li>
+                  <h5 class="font-semibold text-sm">Lait de coco</h5>
+                  <span aria-label="quantité" class="text-gray-500">400</span>
+                </li>
+                <li>
+                  <h5 class="font-semibold text-sm">Lait de coco</h5>
+                  <span aria-label="quantité" class="text-gray-500">400</span>
+                </li>
+                <li>
+                  <h5 class="text-sm font-semibold">Lait de coco</h5>
+                  <span aria-label="quantité" class="text-gray-500">400</span>
+                </li>
+                <li>
+                  <h5 class="font-semibold text-sm">Lait de coco</h5>
+                  <span aria-label="quantité" class="text-gray-500">400</span>
+                </li>
+                <li>
+                  <h5 class="font-semibold text-sm">Lait de coco</h5>
+                  <span aria-label="quantité" class="text-gray-500">400</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </section>
     </main>
 
     <!-- - - - - - - - -    Icones fontawesome   - - - - - - - - -->
