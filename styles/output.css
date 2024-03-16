@@ -568,6 +568,14 @@ video {
   top: 50%;
 }
 
+.right-3 {
+  right: 0.75rem;
+}
+
+.top-2\/4 {
+  top: 50%;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -711,6 +719,10 @@ video {
   font-family: Anton, sans-serif;
 }
 
+.font-manrope {
+  font-family: Manrope, sans-serif;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -726,6 +738,11 @@ video {
   line-height: 2.5rem;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -735,19 +752,19 @@ video {
   line-height: 2.5rem;
 }
 
-.text-slate-500 {
-  --tw-text-opacity: 1;
-  color: rgb(100 116 139 / var(--tw-text-opacity));
-}
-
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.text-yellow {
+.text-slate-500 {
   --tw-text-opacity: 1;
   color: rgb(255 209 91 / var(--tw-text-opacity));
+  line-height: 2.5rem;
+}
+
+.leading-10 {
+  line-height: 2.5rem;
 }
 
 .opacity-0 {
