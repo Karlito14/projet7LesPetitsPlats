@@ -16,6 +16,9 @@ module.exports = {
             boxShadow: {
                 article: '0 0 4px 34px 30px rgba(0, 0, 0, 0.2)',
             },
+            backgroundColor: {
+                yellow: '#FFD15B',
+            },
         },
     },
     plugins: [],
