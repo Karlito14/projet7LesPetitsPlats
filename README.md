@@ -12,6 +12,7 @@ Les Petits Plats est un site web de recettes de cuisine à l’instar de Marmito
 ### Éléments fournis
 
 - [Maquette](https://www.figma.com/file/LY5VQTAqnrAf0bWObOBrt8/Les-petits-plats---Maquette-2.0?type=design&node-id=92376-417&mode=design&t=sz0FDU939hXmx72e-0)
+- [Prototype du site](https://www.figma.com/proto/LY5VQTAqnrAf0bWObOBrt8/Les-petits-plats---Maquette-2.0?type=design&node-id=92376-418&t=mOrVx4khBk3i8qwT-0&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=92376%3A418)
 - [Fichier JSON des recettes](https://github.com/OpenClassrooms-Student-Center/PetitsPlats2.0)
 - [Photos des recettes](https://course.oc-static.com/projects/516_JS/P7/Photos+P7+JS+Les+petits+plats.zip)
 - [Description de l'utilisation de la recherche](https://course.oc-static.com/projects/516_JS/P7/Cas+d%E2%80%99utilisation+%2303+_+Filtrer+les+recettes+dans+l%E2%80%99interface+utilisateur+-+Front-end+P6+(Algorithms)+.pdf)

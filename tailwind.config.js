@@ -1,23 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ['./index.html'],
+    content: [
+        './index.html',
+        './scripts/*.js',
+    ],
     theme: {
+        boxShadow: {
+            article: '0 4px 34px 10px rgba(0, 0, 0, 0.2)',
+        },
         extend: {
-            colors: {
-                yellow: '#FFD15B',
-            },
             height: {
                 600: '663px',
             },
-            fontFamily: {
-                manrope: ['Manrope', 'sans-serif'],
-                anton: ['Anton', 'sans-serif'],
-            },
-            boxShadow: {
-                article: '0 0 4px 34px 30px rgba(0, 0, 0, 0.2)',
-            },
-            backgroundColor: {
+            colors: {
                 yellow: '#FFD15B',
+            },
+            fontFamily: {
+                anton: ['Anton', 'sans-serif'],
             },
         },
     },
