@@ -13,6 +13,9 @@ module.exports = {
                 manrope: ['Manrope', 'sans-serif'],
                 anton: ['Anton', 'sans-serif'],
             },
+            boxShadow: {
+                article: '0 0 4px 34px 30px rgba(0, 0, 0, 0.2)',
+            },
         },
     },
     plugins: [],
