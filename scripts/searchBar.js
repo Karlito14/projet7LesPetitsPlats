@@ -7,10 +7,38 @@ const closeIcon = document.querySelector('#closeIcon');
 
 displayRecipes(recipes);
 
+const deleteWithIcon = () => {
+    searchBar.value = '';
+    searchBar.focus();
+    closeIcon.classList.add('opacity-0');
+    displayRecipes(recipes);
+};
+
+const recipesFilter = (inputValue, array) => {
+    const recipesFiltering = array.filter((element) => {
+        if (element.name.toUpperCase().includes(inputValue)) {
+            return true;
+        }
+
+        if (element.description.toUpperCase().includes(inputValue)) {
+            return true;
+        }
+
+        for (let i = 0; i < element.ingredients.length; i += 1) {
+            const ingredient = element.ingredients[i].ingredient.toUpperCase();
+            if (ingredient.includes(inputValue)) {
+                return true;
+            }
+        }
+        return null;
+    });
+    return recipesFiltering;
+};
+
 searchBar.addEventListener('input', (event) => {
     event.preventDefault();
 
-    let recipesFiltered = [...recipes];
+    let recipesFiltered = [];
 
     const valueInput = event.target.value.trim().toUpperCase();
 
@@ -21,27 +49,18 @@ searchBar.addEventListener('input', (event) => {
     }
 
     if (valueInput.length >= 3) {
-        recipesFiltered = recipes.filter((element) => {
-            if (element.name.toUpperCase().includes(valueInput)) {
-                return true;
-            }
-
-            if (element.description.toUpperCase().includes(valueInput)) {
-                return true;
-            }
-
-            return element.ingredients.forEach((item) => {
-                const ingredient = item.ingredient.toUpperCase();
-                return ingredient.includes(valueInput);
-            });
-        });
+        recipesFiltered = recipesFilter(valueInput, recipes);
+    } else {
+        recipesFiltered = [...recipes];
     }
+
     displayRecipes(recipesFiltered);
 });
 
-closeIcon.addEventListener('click', () => {
-    searchBar.value = '';
-    searchBar.focus();
-    closeIcon.classList.add('opacity-0');
-    displayRecipes(recipes);
+searchBar.addEventListener('keydown', (event) => {
+    if (event.code === 'Enter') {
+        event.preventDefault();
+    }
 });
+
+closeIcon.addEventListener('click', deleteWithIcon);
