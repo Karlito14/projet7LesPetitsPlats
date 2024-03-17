@@ -12,7 +12,7 @@ searchBar.addEventListener('input', (event) => {
 
     let recipesFiltered = [...recipes];
 
-    const valueInput = event.target.value;
+    const valueInput = event.target.value.trim().toUpperCase();
 
     if (valueInput.length > 0) {
         closeIcon.classList.remove('opacity-0');
@@ -22,15 +22,18 @@ searchBar.addEventListener('input', (event) => {
 
     if (valueInput.length >= 3) {
         recipesFiltered = recipes.filter((element) => {
-            if (element.name.includes(valueInput)) {
+            if (element.name.toUpperCase().includes(valueInput)) {
                 return true;
             }
 
-            if (element.description.includes(valueInput)) {
+            if (element.description.toUpperCase().includes(valueInput)) {
                 return true;
             }
 
-            return element.ingredients.forEach((item) => item.ingredient.includes(valueInput));
+            return element.ingredients.forEach((item) => {
+                const ingredient = item.ingredient.toUpperCase();
+                return ingredient.includes(valueInput);
+            });
         });
     }
     displayRecipes(recipesFiltered);
