@@ -1,12 +1,11 @@
-// eslint-disable-next-line import/extensions
-import recipes from '../data/recipes.js';
-
 const recipesSection = document.querySelector('#recipesSection');
 const template = document.querySelector('#article');
 const recipesNumber = document.querySelector('#recipesNumber');
 
-const displayRecipes = (data) => {
+export default (data) => {
+    recipesSection.innerHTML = '';
     recipesNumber.textContent = `${data.length} recettes`;
+
     data.forEach((element) => {
         const clone = template.content.cloneNode(true);
         const elTime = clone.querySelector('#recipeTime');
@@ -37,7 +36,9 @@ const displayRecipes = (data) => {
 
             spanQuantity.textContent = `${ingredient.quantity ?? ''} ${ingredient.unit ?? ''}`;
 
-            elLi.appendChild(spanQuantity);
+            if (ingredient.quantity) {
+                elLi.appendChild(spanQuantity);
+            }
 
             elList.appendChild(elLi);
         });
@@ -45,8 +46,6 @@ const displayRecipes = (data) => {
         recipesSection.appendChild(clone);
     });
 };
-
-displayRecipes(recipes);
 
 /*
 const displayRecipes2 = (data) => {

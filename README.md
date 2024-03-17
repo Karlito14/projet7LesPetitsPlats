@@ -1,4 +1,4 @@
-# Projet Les Petits Plats
+# [Projet Les Petits Plats](https://karlito14.github.io/projet7LesPetitsPlats/)
 
 ## Projet numéro 7 de la formation Openclassrooms Développeur d'Application JavaScript / React
 
@@ -35,6 +35,6 @@ Les Petits Plats est un site web de recettes de cuisine à l’instar de Marmito
 
 ### Tester le projet
 
-Pour tester le projet cliquer ici ou cloner le repository github
+Pour tester le projet cliquer [ici](https://karlito14.github.io/projet7LesPetitsPlats/) ou cloner le repository github
 
 Réalisé par [Carlos Leiroz](https://www.linkedin.com/in/carlos-leiroz/)
