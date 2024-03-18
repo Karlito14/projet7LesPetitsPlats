@@ -1,18 +1,18 @@
-export default (array, option) => {
+const optionsFilter = (array, option, value) => {
     const appliance = [];
     const ustensils = [];
     const ingredients = [];
 
     array.forEach((recipe) => {
         if (option === 'appliance') {
-            if (!appliance.includes(recipe.appliance)) {
+            if (!appliance.includes(recipe.appliance) && recipe.appliance.includes(value)) {
                 appliance.push(recipe.appliance);
             }
         }
 
         if (option === 'ustensils') {
             recipe.ustensils.forEach((ustensil) => {
-                if (!ustensils.includes(ustensil)) {
+                if (!ustensils.includes(ustensil) && ustensil.includes(value)) {
                     ustensils.push(ustensil);
                 }
             });
@@ -20,8 +20,9 @@ export default (array, option) => {
 
         if (option === 'ingredients') {
             recipe.ingredients.forEach((ingredient) => {
-                if (!ingredients.includes(ingredient.ingredient)) {
-                    ingredients.push(ingredient.ingredient);
+                const ingredientName = ingredient.ingredient;
+                if (!ingredients.includes(ingredientName) && ingredientName.includes(value)) {
+                    ingredients.push(ingredientName);
                 }
             });
         }
@@ -40,3 +41,10 @@ export default (array, option) => {
             return null;
     }
 };
+
+const filterBySearchOption = (array, value) => {
+    const updateOptions = array.filter((element) => element.toUpperCase().includes(value));
+    return updateOptions;
+};
+
+export { optionsFilter, filterBySearchOption };
