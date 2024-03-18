@@ -5,15 +5,25 @@ export default (array, option) => {
 
     array.forEach((recipe) => {
         if (option === 'appliance') {
-            appliance.push(recipe.appliance);
+            if (!appliance.includes(recipe.appliance)) {
+                appliance.push(recipe.appliance);
+            }
         }
 
         if (option === 'ustensils') {
-            recipe.ustensils.forEach((ustensil) => ustensils.push(ustensil));
+            recipe.ustensils.forEach((ustensil) => {
+                if (!ustensils.includes(ustensil)) {
+                    ustensils.push(ustensil);
+                }
+            });
         }
 
         if (option === 'ingredients') {
-            recipe.ingredients.forEach((ingredient) => ingredients.push(ingredient.ingredient));
+            recipe.ingredients.forEach((ingredient) => {
+                if (!ingredients.includes(ingredient.ingredient)) {
+                    ingredients.push(ingredient.ingredient);
+                }
+            });
         }
 
         return null;

@@ -4,6 +4,7 @@ import displayRecipes from '../templates/displayRecipes.js';
 import recipesFilter from '../utils/recipesFilter.js';
 import deleteWithIcon from '../utils/delete.js';
 import optionsFilter from '../utils/optionsFilter.js';
+import displayOptions from '../templates/displayOptions.js';
 
 const searchBar = document.querySelector('#searchBar');
 const closeIcon = document.querySelector('#closeIcon');
@@ -54,6 +55,6 @@ closeIcon.addEventListener('click', () => {
 options.forEach((option) => {
     option.addEventListener(('click'), (event) => {
         const availableOptions = optionsFilter(updatedList, event.currentTarget.dataset.name);
-        console.log(availableOptions);
+        displayOptions(availableOptions, event.currentTarget);
     });
 });

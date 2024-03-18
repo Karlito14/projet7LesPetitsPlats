@@ -2,7 +2,7 @@
 module.exports = {
     content: [
         './index.html',
-        './scripts/*.js',
+        './scripts/*/*.js',
     ],
     theme: {
         boxShadow: {
