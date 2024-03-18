@@ -59,20 +59,26 @@
         <div class="flex justify-between items-center">
           <div class="flex">
             <div
-              class="flex bg-white items-center p-4 rounded-lg mr-14 cursor-pointer"
+              class="bg-white items-center p-4 rounded-lg mr-14 cursor-pointer"
             >
-              <h3 class="mr-16">Ingrédients</h3>
-              <i class="fa-solid fa-chevron-down"></i>
+              <div data-name="ingredients" class="flex">
+                <h3 class="mr-16">Ingrédients</h3>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
             </div>
             <div
-              class="flex bg-white items-center p-4 rounded-lg mr-14 cursor-pointer"
+              class="bg-white items-center p-4 rounded-lg mr-14 cursor-pointer"
             >
-              <h3 class="mr-16">Appareils</h3>
-              <i class="fa-solid fa-chevron-down"></i>
+              <div data-name="appliance" class="flex">
+                <h3 class="mr-16">Appareils</h3>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
             </div>
-            <div class="flex bg-white items-center p-4 rounded-lg cursor-pointer">
-              <h3 class="mr-16">Ustensiles</h3>
-              <i class="fa-solid fa-chevron-down"></i>
+            <div class="bg-white items-center p-4 rounded-lg cursor-pointer">
+              <div data-name="ustensils" class="flex">
+                <h3 class="mr-16">Ustensiles</h3>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
             </div>
           </div>
           <span aria-label="nombre de recettes" class="font-anton text-xl" id="recipesNumber"></span
@@ -112,8 +118,6 @@
       src="https://kit.fontawesome.com/a8c57682fc.js"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="./scripts/script.js"></script>
-    <script type="module" src="./scripts/searchBar.js"></script>
-
+    <script type="module" src="./scripts/pages/scripts.js"></script>
   </body>
 </html>
