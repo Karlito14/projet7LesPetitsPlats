@@ -2,7 +2,7 @@
 import recipesList from '../../data/recipes.js';
 import displayRecipes from '../templates/displayRecipes.js';
 import recipesFilter from '../utils/recipesFilter.js';
-import deleteWithIcon from '../utils/delete.js';
+import { deleteWithIcon, displayCloseIcon } from '../utils/delete.js';
 import optionsFilter from '../utils/optionsFilter.js';
 import displayOptions from '../templates/displayOptions.js';
 
@@ -24,11 +24,7 @@ searchBar.addEventListener('input', (event) => {
 
     const valueInput = event.target.value.trim().toUpperCase();
 
-    if (valueInput.length > 0) {
-        closeIcon.classList.remove('opacity-0');
-    } else {
-        closeIcon.classList.add('opacity-0');
-    }
+    displayCloseIcon(valueInput, closeIcon);
 
     if (valueInput.length >= 3) {
         recipesFiltered = recipesFilter(valueInput, recipesList);
@@ -56,5 +52,18 @@ options.forEach((option) => {
     option.addEventListener(('click'), (event) => {
         const availableOptions = optionsFilter(updatedList, event.currentTarget.dataset.name);
         displayOptions(availableOptions, event.currentTarget);
+
+        const inputOption = document.querySelector('#input-option');
+        const iconOption = document.querySelector('#icon-option');
+
+        inputOption?.addEventListener('input', () => {
+            const valueInput = inputOption.value.trim().toUpperCase();
+
+            displayCloseIcon(valueInput, iconOption);
+        });
+
+        iconOption?.addEventListener('click', () => {
+            deleteWithIcon(inputOption, iconOption);
+        });
     });
 });
