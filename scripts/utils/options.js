@@ -1,18 +1,18 @@
-const optionsFilter = (array, option, value) => {
+const optionsFilter = (array, option) => {
     const appliance = [];
     const ustensils = [];
     const ingredients = [];
 
     array.forEach((recipe) => {
         if (option === 'appliance') {
-            if (!appliance.includes(recipe.appliance) && recipe.appliance.includes(value)) {
+            if (!appliance.includes(recipe.appliance)) {
                 appliance.push(recipe.appliance);
             }
         }
 
         if (option === 'ustensils') {
             recipe.ustensils.forEach((ustensil) => {
-                if (!ustensils.includes(ustensil) && ustensil.includes(value)) {
+                if (!ustensils.includes(ustensil)) {
                     ustensils.push(ustensil);
                 }
             });
@@ -21,7 +21,7 @@ const optionsFilter = (array, option, value) => {
         if (option === 'ingredients') {
             recipe.ingredients.forEach((ingredient) => {
                 const ingredientName = ingredient.ingredient;
-                if (!ingredients.includes(ingredientName) && ingredientName.includes(value)) {
+                if (!ingredients.includes(ingredientName)) {
                     ingredients.push(ingredientName);
                 }
             });

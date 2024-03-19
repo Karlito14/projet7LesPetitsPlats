@@ -56,60 +56,72 @@
     </header>
 
     <main class="bg-neutral-200 px-28 py-6">
-        <div class="flex justify-between items-center">
-          <div class="flex">
-            <div
-              class="bg-white items-center p-4 rounded-lg mr-14 w-48 relative"
-              id="div-parent"
-            >
-              <div data-name="ingredients" class="flex cursor-pointer">
-                <h3 class="mr-16">Ingrédients</h3>
-                <i class="fa-solid fa-chevron-down" id="icon-ingredients"></i>
-              </div>
-            </div>
-            <div
-              class="bg-white items-center p-4 rounded-lg mr-14 w-48 relative"
-              id="div-parent"
-            >
-              <div data-name="appliance" class="flex cursor-pointer">
-                <h3 class="mr-16">Appareils</h3>
-                <i class="fa-solid fa-chevron-down" id="icon-appliance"></i>
-              </div>
-            </div>
-            <div class="bg-white items-center p-4 rounded-lg w-48 relative" id="div-parent">
-              <div data-name="ustensils" class="flex cursor-pointer">
-                <h3 class="mr-16">Ustensiles</h3>
-                <i class="fa-solid fa-chevron-down" id="icon-ustensils"></i>
-              </div>
+      <div class="flex justify-between items-center">
+        <div class="flex">
+          <div
+            class="bg-white items-center p-4 rounded-lg mr-14 w-48 relative"
+            data-name="div-parent"
+          >
+            <div data-name="ingredients" class="flex cursor-pointer">
+              <h3 class="mr-16">Ingrédients</h3>
+              <i class="fa-solid fa-chevron-down" id="icon-ingredients"></i>
             </div>
           </div>
-          <span aria-label="nombre de recettes" class="font-anton text-xl" id="recipesNumber"></span
+          <div
+            class="bg-white items-center p-4 rounded-lg mr-14 w-48 relative"
+            data-name="div-parent"
           >
+            <div data-name="appliance" class="flex cursor-pointer">
+              <h3 class="mr-16">Appareils</h3>
+              <i class="fa-solid fa-chevron-down" id="icon-appliance"></i>
+            </div>
+          </div>
+          <div
+            class="bg-white items-center p-4 rounded-lg w-48 relative"
+            data-name="div-parent"
+          >
+            <div data-name="ustensils" class="flex cursor-pointer">
+              <h3 class="mr-16">Ustensiles</h3>
+              <i class="fa-solid fa-chevron-down" id="icon-ustensils"></i>
+            </div>
+          </div>
         </div>
-        <section class="grid gap-20 grid-cols-3 mt-10" id="recipesSection">
-          
-        </section>
+        <h2
+          aria-label="nombre de recettes"
+          class="font-anton text-xl"
+          id="recipesNumber"
+        >Recettes</h2>
+      </div>
+      <div class="flex items-center mt-5" id="divOptionsSelected"></div>
+      <div
+        class="grid gap-20 grid-cols-3 mt-10"
+        id="recipesSection"
+      ></div>
     </main>
 
     <!-- - - - - - - - -    Template   - - - - - - - - -->
     <template id="article">
       <article class="shadow-article relative rounded-xl bg-white">
-        <mark class="absolute px-3 py-1 top-4 right-4 bg-yellow rounded-xl" id="recipeTime"></mark>
-        <img
-          class="h-60 w-full object-cover rounded-t-xl"
-          id="recipeImage"
-        />
+        <mark
+          class="absolute px-3 py-1 top-4 right-4 bg-yellow rounded-xl"
+          id="recipeTime"
+        ></mark>
+        <img class="h-60 w-full object-cover rounded-t-xl" id="recipeImage">
         <div class="rounded-b-xl px-6 py-7">
           <h3 class="font-anton mb-8" id="recipeTitle"></h3>
           <div>
             <h4 class="text-neutral-500 mb-4">Recette</h4>
-            <p class="mb-8 h-32 overflow-hidden hover:overflow-auto" id="recipeDescription"></p>
+            <p
+              class="mb-8 h-32 overflow-hidden hover:overflow-auto"
+              id="recipeDescription"
+            ></p>
           </div>
           <div>
             <h4 class="text-neutral-500 mb-4">Ingrédients</h4>
-            <ul class="grid grid-cols-2 gap-y-5 gap-x-2" id="ingredientsList">
-            
-            </ul>
+            <ul
+              class="grid grid-cols-2 gap-y-5 gap-x-2"
+              id="ingredientsList"
+            ></ul>
           </div>
         </div>
       </article>

@@ -1,3 +1,21 @@
+const displayOptionSelected = (element) => {
+    const divOptionsSelected = document.querySelector('#divOptionsSelected');
+    const value = element.textContent;
+
+    const spanOptionSelected = document.createElement('span');
+    spanOptionSelected.setAttribute('class', 'bg-yellow px-4 py-3 flex justify-between items-center rounded-xl mr-6');
+    spanOptionSelected.textContent = value;
+
+    const closeOption = document.createElement('i');
+    closeOption.setAttribute('class', 'fa-solid fa-xmark pl-8 cursor-pointer');
+
+    closeOption.addEventListener('click', () => spanOptionSelected.remove());
+
+    spanOptionSelected.appendChild(closeOption);
+
+    divOptionsSelected.appendChild(spanOptionSelected);
+};
+
 const forEachList = (array, parentElement) => {
     const ulElement = document.createElement('ul');
 
@@ -11,6 +29,10 @@ const forEachList = (array, parentElement) => {
         liElement.classList.add('py-3');
         liElement.classList.add('px-4');
 
+        liElement.addEventListener('click', () => {
+            displayOptionSelected(liElement);
+        });
+
         ulElement.appendChild(liElement);
     });
 
@@ -18,37 +40,25 @@ const forEachList = (array, parentElement) => {
 };
 
 const displayOptions = (array, optionDiv) => {
-    const parentElement = optionDiv.closest('#div-parent');
+    const parentElement = optionDiv.closest('[data-name=div-parent]');
+
+    // fermeture des autres options ouvertes
+    const allDivOptions = document.querySelectorAll('[data-name=div-options]');
+    if (allDivOptions.length > 0) {
+        allDivOptions.forEach((divOption) => divOption.remove());
+    }
 
     const divOptions = document.createElement('div');
     divOptions.setAttribute('id', `div-option-${optionDiv.dataset.name}`);
-    divOptions.classList.add('overflow-y-scroll');
-    divOptions.classList.add('max-h-52');
-    divOptions.classList.add('scrollbar');
-    divOptions.classList.add('absolute');
-    divOptions.classList.add('left-0');
-    divOptions.classList.add('bg-white');
-    divOptions.classList.add('z-10');
-    divOptions.classList.add('w-48');
-    divOptions.classList.add('rounded-bl-xl');
-    divOptions.classList.add('rounded-br-xl');
+    divOptions.setAttribute('data-name', 'div-options');
+    divOptions.setAttribute('class', 'overflow-y-scroll max-h-52 scrollbar absolute left-0 bg-white z-10 w-48 rounded-bl-xl rounded-br-xl');
 
     const inputSearch = document.createElement('input');
     inputSearch.setAttribute('type', 'text');
     inputSearch.setAttribute('id', 'input-option');
     inputSearch.setAttribute('autocomplete', 'off');
-    inputSearch.classList.add('border-slate-300');
-    inputSearch.classList.add('border-solid');
-    inputSearch.classList.add('border');
-    inputSearch.classList.add('block');
-    inputSearch.classList.add('py-2');
-    inputSearch.classList.add('pl-4');
-    inputSearch.classList.add('pr-14');
-    inputSearch.classList.add('my-3');
-    inputSearch.classList.add('mx-auto');
-    inputSearch.classList.add('w-44');
-    inputSearch.classList.add('cursor-pointer');
-    inputSearch.classList.add('focus:outline-none');
+    inputSearch.setAttribute('class', 'border-slate-300 border-solid border block py-2 pl-4 pr-14 my-3 mx-auto w-44 cursor-pointer focus:outline-none');
+
     setTimeout(() => {
         inputSearch.focus();
     }, 100);

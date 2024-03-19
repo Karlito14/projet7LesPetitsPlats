@@ -50,7 +50,7 @@ closeIcon.addEventListener('click', () => {
 
 options.forEach((option) => {
     option.addEventListener(('click'), (event) => {
-        const availableOptions = optionsFilter(updatedList, event.currentTarget.dataset.name, '');
+        const availableOptions = optionsFilter(updatedList, event.currentTarget.dataset.name);
         let divOptions = document.querySelector(`#div-option-${option.dataset.name}`);
         const iconChevron = document.querySelector(`#icon-${option.dataset.name}`);
 
