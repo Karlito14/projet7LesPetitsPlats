@@ -2,9 +2,12 @@ const recipesSection = document.querySelector('#recipesSection');
 const template = document.querySelector('#article');
 const recipesNumber = document.querySelector('#recipesNumber');
 
-export default (data) => {
+export default (data, value) => {
     recipesSection.innerHTML = '';
     recipesNumber.textContent = `${data.length} recettes`;
+
+    let error = document.querySelector('#error');
+    error?.remove();
 
     data?.forEach((element) => {
         const clone = template.content.cloneNode(true);
@@ -43,4 +46,13 @@ export default (data) => {
 
         recipesSection.appendChild(clone);
     });
+
+    if (data.length === 0) {
+        error = document.createElement('p');
+        error.setAttribute('id', 'error');
+        error.setAttribute('class', 'text-xl font-bold text-center');
+        error.textContent = `Aucune recette ne contient ${value} vous pouvez chercher «
+        tarte aux pommes », « poisson », etc`;
+        recipesSection.after(error);
+    }
 };

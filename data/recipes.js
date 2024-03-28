@@ -62,7 +62,7 @@ export default [
                 quantity: 5,
             },
             {
-                ingredient: 'Lait de Coco',
+                ingredient: 'Lait de coco',
                 quantity: 100,
                 unit: 'ml',
             },
@@ -370,7 +370,7 @@ export default [
         time: 60,
         description: "Commencer par cuire les pommes de terre dans l'eau bouillante. Puis épluchez les et coupez les en rondelles. Émincer les oignons puis les faire dorer dans du beurre. Ajouter le jambon fumé coupé en en morceaux ainsi que les pommes de terres. Salez, poivrez à votre gout ( et celui de vos convives ) Laissez cuisiner durant environ 10 minutes puis ajouter le vin blanc. Après 5 minutes, mettre le tout dans un plat à gratin. Coupez le reblochon, soit en tranches, soit le couper en 2 dans le sens de l'épaisseur et recouvrir les pommes de terre. Cuire au four (environ 220°) durant 25 minutes. C'est prêt !",
         appliance: 'Four',
-        ustensils: ['plat à gratin', 'couteau', 'Économe'],
+        ustensils: ['plat à gratin', 'couteau', 'économe'],
     }, {
         id: 11,
         image: 'Recette11.jpg',
@@ -393,7 +393,7 @@ export default [
                 unit: 'tranches',
             },
             {
-                ingredient: 'Pommes',
+                ingredient: 'Pomme',
                 quantity: 1,
             },
             {
@@ -422,7 +422,7 @@ export default [
                 unit: 'grammes',
             },
             {
-                ingredient: 'Pommes',
+                ingredient: 'Pomme',
                 quantity: 8,
             },
             {
@@ -468,7 +468,7 @@ export default [
                 unit: 'cuillère à soupe',
             },
             {
-                ingredient: "huile d'olive",
+                ingredient: "Huile d'olive",
                 quantity: 2,
                 unit: 'cuillère à soupe',
             },
@@ -586,7 +586,7 @@ export default [
                 unit: 'tiges',
             },
             {
-                ingredient: "huile d'olives",
+                ingredient: "Huile d'olive",
                 quantity: 2,
                 unit: 'cuillère à soupe',
             },
@@ -716,7 +716,7 @@ export default [
                 unit: 'grammes',
             },
             {
-                ingredient: "huile d'olive",
+                ingredient: "Huile d'olive",
                 quantity: 1,
                 unit: 'cuillères à soupe',
             },
@@ -765,7 +765,7 @@ export default [
         time: 30,
         description: 'Cuisiner la viande hachée dans une poêle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oignons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraîche à la viande hachée. Servir.',
         appliance: 'Casserole',
-        ustensils: ['Cuillère en bois', 'louche', 'couteau'],
+        ustensils: ['cuillère en bois', 'louche', 'couteau'],
     },
     {
         id: 22,
@@ -935,7 +935,7 @@ export default [
                 quantity: 1,
             },
             {
-                ingredient: "Huile d'olives",
+                ingredient: "Huile d'olive",
             },
             {
                 ingredient: 'Oignon',
@@ -1114,7 +1114,7 @@ export default [
         time: 60,
         description: "Découper en cubes les carottes et pommes de terre. Faire revenir dans du beurre. Ajouter les lardons, une fois les lardons dorés, ajouter un grand verre d'eau. Ajouter les petit poids et les haricots verts ( tous deux pré cuits ). Ajouter Sel, poivre, thyms et laurier",
         appliance: 'Poêle',
-        ustensils: ['Couteau', 'économe'],
+        ustensils: ['couteau', 'économe'],
     },
     {
         id: 32,
@@ -1319,7 +1319,7 @@ export default [
                 unit: 'grammes',
             },
             {
-                ingredient: "Huile d'olives",
+                ingredient: "Huile d'olive",
                 quantity: 25,
                 unit: 'cl',
             },
@@ -1328,7 +1328,7 @@ export default [
                 quantity: 1,
             },
             {
-                ingredient: 'Coulis de tomates',
+                ingredient: 'Coulis de tomate',
                 quantity: 20,
                 unit: 'cl',
             },
@@ -1711,7 +1711,7 @@ export default [
         servings: 4,
         ingredients: [
             {
-                ingredient: 'Bananes',
+                ingredient: 'Banane',
                 quantity: 2,
             },
             {

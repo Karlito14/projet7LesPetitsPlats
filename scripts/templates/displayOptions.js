@@ -9,7 +9,9 @@ const displayOptionSelected = (element) => {
     const closeOption = document.createElement('i');
     closeOption.setAttribute('class', 'fa-solid fa-xmark pl-8 cursor-pointer');
 
-    closeOption.addEventListener('click', () => spanOptionSelected.remove());
+    closeOption.addEventListener('click', () => {
+        spanOptionSelected.remove();
+    });
 
     spanOptionSelected.appendChild(closeOption);
 
@@ -45,7 +47,12 @@ const displayOptions = (array, optionDiv) => {
     // fermeture des autres options ouvertes
     const allDivOptions = document.querySelectorAll('[data-name=div-options]');
     if (allDivOptions.length > 0) {
-        allDivOptions.forEach((divOption) => divOption.remove());
+        allDivOptions.forEach((divOption) => {
+            const parentDiv = divOption.closest('[data-name=div-parent]');
+            const bracket = parentDiv.querySelector('i');
+            bracket.classList.remove('rotate-180');
+            divOption.remove();
+        });
     }
 
     const divOptions = document.createElement('div');
