@@ -18,7 +18,7 @@ const displayOptionSelected = (element) => {
     divOptionsSelected.appendChild(spanOptionSelected);
 };
 
-const forEachList = (array, parentElement) => {
+const forEachList = (array) => {
     const ulElement = document.createElement('ul');
 
     array.sort((a, b) => a.localeCompare(b));
@@ -38,13 +38,10 @@ const forEachList = (array, parentElement) => {
         ulElement.appendChild(liElement);
     });
 
-    parentElement.appendChild(ulElement);
+    return ulElement;
 };
 
-const displayOptions = (array, optionDiv) => {
-    const parentElement = optionDiv.closest('[data-name=div-parent]');
-
-    // fermeture des autres options ouvertes
+const closeDivOptions = () => {
     const allDivOptions = document.querySelectorAll('[data-name=div-options]');
     if (allDivOptions.length > 0) {
         allDivOptions.forEach((divOption) => {
@@ -54,6 +51,13 @@ const displayOptions = (array, optionDiv) => {
             divOption.remove();
         });
     }
+};
+
+const displayOptions = (array, optionDiv) => {
+    const parentElement = optionDiv.closest('[data-name=div-parent]');
+
+    // fermeture des autres options ouvertes
+    closeDivOptions();
 
     const divOptions = document.createElement('div');
     divOptions.setAttribute('id', `div-option-${optionDiv.dataset.name}`);
@@ -81,9 +85,12 @@ const displayOptions = (array, optionDiv) => {
     divOptions.appendChild(iconClose);
     divOptions.appendChild(inputSearch);
 
-    forEachList(array, divOptions);
+    divOptions.addEventListener('click', (event) => event.stopPropagation());
+
+    const ulElement = forEachList(array);
+    divOptions.appendChild(ulElement);
 
     parentElement.appendChild(divOptions);
 };
 
-export { forEachList, displayOptions };
+export { forEachList, displayOptions, closeDivOptions };

@@ -4,8 +4,9 @@ import displayRecipes from '../templates/displayRecipes.js';
 import { filterByInput } from '../utils/recipesFilter.js';
 import { deleteWithIcon, displayCloseIcon } from '../utils/delete.js';
 import { optionsFilter, filterBySearchOption } from '../utils/options.js';
-import { displayOptions, forEachList } from '../templates/displayOptions.js';
+import { displayOptions, forEachList, closeDivOptions } from '../templates/displayOptions.js';
 
+const body = document.querySelector('body');
 const searchBar = document.querySelector('#searchBar');
 const closeIcon = document.querySelector('#closeIcon');
 const optionIngredients = document.querySelector('[data-name = ingredients]');
@@ -15,7 +16,12 @@ const options = [optionIngredients, optionUstensils, optionAppliance];
 
 let updatedList = [...recipesList];
 
+body.addEventListener('click', () => {
+    closeDivOptions();
+});
+
 displayRecipes(updatedList);
+let [appliances, ustensils, ingredients] = optionsFilter(updatedList);
 
 searchBar.addEventListener('input', (event) => {
     const valueInput = event.target.value.trim();
@@ -28,6 +34,7 @@ searchBar.addEventListener('input', (event) => {
         updatedList = [...recipesList];
     }
 
+    [appliances, ustensils, ingredients] = optionsFilter(updatedList);
     displayRecipes(updatedList, valueInput);
 });
 
@@ -40,12 +47,24 @@ searchBar.addEventListener('keydown', (event) => {
 closeIcon.addEventListener('click', () => {
     deleteWithIcon(searchBar, closeIcon);
     updatedList = [...recipesList];
+    [appliances, ustensils, ingredients] = optionsFilter(updatedList);
     displayRecipes(updatedList);
 });
 
 options.forEach((option) => {
     option.addEventListener(('click'), (event) => {
-        const availableOptions = optionsFilter(updatedList, event.currentTarget.dataset.name);
+        const nameOption = event.currentTarget.dataset.name;
+        event.stopPropagation();
+        let availableOptions;
+
+        if (nameOption === 'ingredients') {
+            availableOptions = ingredients;
+        } else if (nameOption === 'appliance') {
+            availableOptions = appliances;
+        } else {
+            availableOptions = ustensils;
+        }
+
         const divOptions = document.querySelector(`#div-option-${option.dataset.name}`);
         const iconChevron = document.querySelector(`#icon-${option.dataset.name}`);
 
@@ -63,14 +82,15 @@ options.forEach((option) => {
         inputOption?.addEventListener('input', (e) => {
             const valueInput = inputOption.value.trim().toUpperCase();
             const optionClicked = e.target.closest('div');
-            const ulElement = optionClicked.querySelector('ul');
+            let ulElement = optionClicked.querySelector('ul');
             ulElement?.remove();
 
             displayCloseIcon(valueInput, iconOption);
 
             const updatedOptions = filterBySearchOption(availableOptions, valueInput);
 
-            forEachList(updatedOptions, optionClicked);
+            ulElement = forEachList(updatedOptions);
+            optionClicked.appendChild(ulElement);
         });
 
         iconOption?.addEventListener('click', () => {

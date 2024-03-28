@@ -19,11 +19,11 @@ const filterByInput = (inputValue, array) => {
     return recipesFiltering;
 };
 
-const filterByOption = (optionValue, array, option) => {
+const filterByOption = (value, array, option) => {
     const recipesFiltered = [];
     if (option === 'appliance') {
         array.forEach((recipe) => {
-            if (recipe.appliance === optionValue) {
+            if (recipe.appliance.toUpperCase() === value) {
                 recipesFiltered.push(recipe);
             }
         });
@@ -32,7 +32,7 @@ const filterByOption = (optionValue, array, option) => {
     if (option === 'ustensils') {
         array.forEach((recipe) => {
             recipe.ustensils.forEach((ustensil) => {
-                if (ustensil === optionValue) {
+                if (ustensil.toUpperCase() === value) {
                     recipesFiltered.push(recipe);
                 }
             });
@@ -42,7 +42,7 @@ const filterByOption = (optionValue, array, option) => {
     if (option === 'ingredients') {
         array.forEach((recipe) => {
             recipe.ingredients.forEach((ingredient) => {
-                if (ingredient === optionValue) {
+                if (ingredient.ingredient.toUpperCase() === value) {
                     recipesFiltered.push(recipe);
                 }
             });

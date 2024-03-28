@@ -1,45 +1,28 @@
-const optionsFilter = (array, option) => {
+const optionsFilter = (array) => {
     const appliance = [];
     const ustensils = [];
     const ingredients = [];
 
     array.forEach((recipe) => {
-        if (option === 'appliance') {
-            if (!appliance.includes(recipe.appliance)) {
-                appliance.push(recipe.appliance);
+        if (!appliance.includes(recipe.appliance)) {
+            appliance.push(recipe.appliance);
+        }
+
+        recipe.ustensils.forEach((ustensil) => {
+            if (!ustensils.includes(ustensil)) {
+                ustensils.push(ustensil);
             }
-        }
+        });
 
-        if (option === 'ustensils') {
-            recipe.ustensils.forEach((ustensil) => {
-                if (!ustensils.includes(ustensil)) {
-                    ustensils.push(ustensil);
-                }
-            });
-        }
-
-        if (option === 'ingredients') {
-            recipe.ingredients.forEach((ingredient) => {
-                const ingredientName = ingredient.ingredient;
-                if (!ingredients.includes(ingredientName)) {
-                    ingredients.push(ingredientName);
-                }
-            });
-        }
-
-        return null;
+        recipe.ingredients.forEach((ingredient) => {
+            const ingredientName = ingredient.ingredient;
+            if (!ingredients.includes(ingredientName)) {
+                ingredients.push(ingredientName);
+            }
+        });
     });
 
-    switch (option) {
-        case 'appliance':
-            return appliance;
-        case 'ustensils':
-            return ustensils;
-        case 'ingredients':
-            return ingredients;
-        default:
-            return null;
-    }
+    return [appliance, ustensils, ingredients];
 };
 
 const filterBySearchOption = (array, value) => {
