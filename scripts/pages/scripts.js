@@ -1,10 +1,16 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable import/extensions */
 import recipesList from '../../data/recipes.js';
 import displayRecipes from '../templates/displayRecipes.js';
-import { filterByInput } from '../utils/recipesFilter.js';
+import { filterByInput, filterByOption } from '../utils/recipesFilter.js';
 import { deleteWithIcon, displayCloseIcon } from '../utils/delete.js';
 import { optionsFilter, filterBySearchOption } from '../utils/options.js';
-import { displayOptions, forEachList, closeDivOptions } from '../templates/displayOptions.js';
+import {
+    displayOptions,
+    forEachList,
+    closeDivOptions,
+    displayOptionSelected,
+} from '../templates/displayOptions.js';
 
 const body = document.querySelector('body');
 const searchBar = document.querySelector('#searchBar');
@@ -15,6 +21,8 @@ const optionUstensils = document.querySelector('[data-name = ustensils]');
 const options = [optionIngredients, optionUstensils, optionAppliance];
 
 let updatedList = [...recipesList];
+let valueInputUpdated = '';
+const optionSelectedList = [];
 
 body.addEventListener('click', () => {
     closeDivOptions();
@@ -24,18 +32,29 @@ displayRecipes(updatedList);
 let [appliances, ustensils, ingredients] = optionsFilter(updatedList);
 
 searchBar.addEventListener('input', (event) => {
-    const valueInput = event.target.value.trim();
+    searchBar.setCustomValidity('');
+    searchBar.checkValidity();
 
-    displayCloseIcon(valueInput, closeIcon);
+    valueInputUpdated = event.target.value.trim().toUpperCase();
 
-    if (valueInput.length >= 3) {
-        updatedList = filterByInput(valueInput.toUpperCase(), updatedList);
-    } else {
-        updatedList = [...recipesList];
+    displayCloseIcon(valueInputUpdated, closeIcon);
+
+    if (valueInputUpdated.length >= 3 || valueInputUpdated.length === 0) {
+        updatedList = filterByInput(valueInputUpdated, recipesList);
     }
 
+    if (optionSelectedList.length > 0) {
+        updatedList = filterByOption(optionSelectedList, updatedList);
+    }
+
+    displayRecipes(updatedList, valueInputUpdated);
     [appliances, ustensils, ingredients] = optionsFilter(updatedList);
-    displayRecipes(updatedList, valueInput);
+});
+
+searchBar.addEventListener('invalid', () => {
+    searchBar.setCustomValidity(
+        'Veuillez saisir uniquement des lettres et des espaces',
+    );
 });
 
 searchBar.addEventListener('keydown', (event) => {
@@ -45,14 +64,18 @@ searchBar.addEventListener('keydown', (event) => {
 });
 
 closeIcon.addEventListener('click', () => {
+    valueInputUpdated = '';
     deleteWithIcon(searchBar, closeIcon);
-    updatedList = [...recipesList];
-    [appliances, ustensils, ingredients] = optionsFilter(updatedList);
+    updatedList = filterByInput(valueInputUpdated, recipesList);
+    if (optionSelectedList.length > 0) {
+        updatedList = filterByOption(optionSelectedList, updatedList);
+    }
     displayRecipes(updatedList);
+    [appliances, ustensils, ingredients] = optionsFilter(updatedList);
 });
 
 options.forEach((option) => {
-    option.addEventListener(('click'), (event) => {
+    option.addEventListener('click', (event) => {
         const nameOption = event.currentTarget.dataset.name;
         event.stopPropagation();
         let availableOptions;
@@ -67,35 +90,76 @@ options.forEach((option) => {
 
         const divOptions = document.querySelector(`#div-option-${option.dataset.name}`);
         const iconChevron = document.querySelector(`#icon-${option.dataset.name}`);
+        iconChevron.classList.toggle('rotate-180');
 
         if (divOptions) {
             divOptions.remove();
-            iconChevron.classList.remove('rotate-180');
         } else {
-            iconChevron.classList.add('rotate-180');
             displayOptions(availableOptions, option);
         }
 
         const inputOption = document.querySelector('#input-option');
         const iconOption = document.querySelector('#icon-option');
+        const optionClicked = iconOption?.closest('div');
 
-        inputOption?.addEventListener('input', (e) => {
+        if (optionClicked) {
+            elementLiClick(optionClicked, recipesList);
+        }
+
+        inputOption?.addEventListener('input', () => {
             const valueInput = inputOption.value.trim().toUpperCase();
-            const optionClicked = e.target.closest('div');
-            let ulElement = optionClicked.querySelector('ul');
-            ulElement?.remove();
 
             displayCloseIcon(valueInput, iconOption);
 
-            const updatedOptions = filterBySearchOption(availableOptions, valueInput);
+            const updatedOptions = filterBySearchOption([...availableOptions], valueInput);
 
-            ulElement = forEachList(updatedOptions);
-            optionClicked.appendChild(ulElement);
+            forEachList(updatedOptions, optionClicked);
+
+            elementLiClick(optionClicked, recipesList);
         });
 
         iconOption?.addEventListener('click', () => {
             deleteWithIcon(inputOption, iconOption);
-            displayOptions(availableOptions, option);
+            forEachList(availableOptions, optionClicked);
+            elementLiClick(optionClicked, recipesList);
         });
     });
 });
+
+// Functions
+function elementLiClick(ulElement, array) {
+    let list = [];
+    const allElementsLi = ulElement.querySelectorAll('li');
+    allElementsLi.forEach((item) => {
+        item.addEventListener('click', () => {
+            const spanOptionSelected = displayOptionSelected(item);
+            const iconCloseSpan = spanOptionSelected.querySelector('i');
+
+            if (!optionSelectedList.includes(item.textContent.toUpperCase())) {
+                optionSelectedList.push(item.textContent.toUpperCase());
+            }
+
+            list = filterByInput(valueInputUpdated.toUpperCase(), array);
+            list = filterByOption(optionSelectedList, list);
+            updatedList = [...list];
+
+            displayRecipes(list);
+            [appliances, ustensils, ingredients] = optionsFilter(list);
+
+            iconCloseSpan.addEventListener('click', () => {
+                spanOptionSelected.remove();
+                const indexOption = optionSelectedList.indexOf(
+                    item.textContent.toUpperCase(),
+                );
+                optionSelectedList.splice(indexOption, 1);
+
+                list = filterByInput(valueInputUpdated.toUpperCase(), array);
+                list = filterByOption(optionSelectedList, list);
+                // updatedList = [...list];
+
+                displayRecipes(list);
+                [appliances, ustensils, ingredients] = optionsFilter(list);
+            });
+        });
+    });
+}

@@ -9,17 +9,18 @@ const displayOptionSelected = (element) => {
     const closeOption = document.createElement('i');
     closeOption.setAttribute('class', 'fa-solid fa-xmark pl-8 cursor-pointer');
 
-    closeOption.addEventListener('click', () => {
-        spanOptionSelected.remove();
-    });
-
     spanOptionSelected.appendChild(closeOption);
 
     divOptionsSelected.appendChild(spanOptionSelected);
+
+    return spanOptionSelected;
 };
 
-const forEachList = (array) => {
-    const ulElement = document.createElement('ul');
+const forEachList = (array, elParent) => {
+    let ulElement = elParent.querySelector('ul');
+    ulElement?.remove();
+
+    ulElement = document.createElement('ul');
 
     array.sort((a, b) => a.localeCompare(b));
 
@@ -31,14 +32,10 @@ const forEachList = (array) => {
         liElement.classList.add('py-3');
         liElement.classList.add('px-4');
 
-        liElement.addEventListener('click', () => {
-            displayOptionSelected(liElement);
-        });
-
         ulElement.appendChild(liElement);
     });
 
-    return ulElement;
+    elParent.appendChild(ulElement);
 };
 
 const closeDivOptions = () => {
@@ -87,10 +84,11 @@ const displayOptions = (array, optionDiv) => {
 
     divOptions.addEventListener('click', (event) => event.stopPropagation());
 
-    const ulElement = forEachList(array);
-    divOptions.appendChild(ulElement);
+    forEachList(array, divOptions);
 
     parentElement.appendChild(divOptions);
 };
 
-export { forEachList, displayOptions, closeDivOptions };
+export {
+    forEachList, displayOptions, closeDivOptions, displayOptionSelected,
+};
