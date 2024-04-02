@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 import recipesList from '../../data/recipes.js';
 import displayRecipes from '../templates/displayRecipes.js';
-import { filterByInput, filterByOption } from '../utils/recipesFilter.js';
+import filterRecipes from '../utils/recipesFilter.js';
 import { deleteWithIcon, displayCloseIcon } from '../utils/delete.js';
 import { optionsFilter, filterBySearchOption } from '../utils/options.js';
 import {
@@ -28,8 +28,8 @@ body.addEventListener('click', () => {
     closeDivOptions();
 });
 
-displayRecipes(updatedList);
-let [appliances, ustensils, ingredients] = optionsFilter(updatedList);
+displayRecipes(recipesList);
+let [appliances, ustensils, ingredients] = optionsFilter(recipesList);
 
 searchBar.addEventListener('input', (event) => {
     searchBar.setCustomValidity('');
@@ -40,11 +40,7 @@ searchBar.addEventListener('input', (event) => {
     displayCloseIcon(valueInputUpdated, closeIcon);
 
     if (valueInputUpdated.length >= 3 || valueInputUpdated.length === 0) {
-        updatedList = filterByInput(valueInputUpdated, recipesList);
-    }
-
-    if (optionSelectedList.length > 0) {
-        updatedList = filterByOption(optionSelectedList, updatedList);
+        updatedList = filterRecipes(optionSelectedList, recipesList, valueInputUpdated);
     }
 
     displayRecipes(updatedList, valueInputUpdated);
@@ -66,10 +62,8 @@ searchBar.addEventListener('keydown', (event) => {
 closeIcon.addEventListener('click', () => {
     valueInputUpdated = '';
     deleteWithIcon(searchBar, closeIcon);
-    updatedList = filterByInput(valueInputUpdated, recipesList);
-    if (optionSelectedList.length > 0) {
-        updatedList = filterByOption(optionSelectedList, updatedList);
-    }
+    updatedList = filterRecipes(optionSelectedList, recipesList, valueInputUpdated);
+
     displayRecipes(updatedList);
     [appliances, ustensils, ingredients] = optionsFilter(updatedList);
 });
@@ -103,7 +97,7 @@ options.forEach((option) => {
         const optionClicked = iconOption?.closest('div');
 
         if (optionClicked) {
-            elementLiClick(optionClicked, recipesList);
+            elementLiClick(optionClicked);
         }
 
         inputOption?.addEventListener('input', () => {
@@ -115,20 +109,19 @@ options.forEach((option) => {
 
             forEachList(updatedOptions, optionClicked);
 
-            elementLiClick(optionClicked, recipesList);
+            elementLiClick(optionClicked);
         });
 
         iconOption?.addEventListener('click', () => {
             deleteWithIcon(inputOption, iconOption);
             forEachList(availableOptions, optionClicked);
-            elementLiClick(optionClicked, recipesList);
+            elementLiClick(optionClicked);
         });
     });
 });
 
 // Functions
-function elementLiClick(ulElement, array) {
-    let list = [];
+function elementLiClick(ulElement) {
     const allElementsLi = ulElement.querySelectorAll('li');
     allElementsLi.forEach((item) => {
         item.addEventListener('click', () => {
@@ -138,27 +131,22 @@ function elementLiClick(ulElement, array) {
             if (!optionSelectedList.includes(item.textContent.toUpperCase())) {
                 optionSelectedList.push(item.textContent.toUpperCase());
             }
+            updatedList = filterRecipes(optionSelectedList, updatedList, valueInputUpdated);
 
-            list = filterByInput(valueInputUpdated.toUpperCase(), array);
-            list = filterByOption(optionSelectedList, list);
-            updatedList = [...list];
+            displayRecipes(updatedList);
+            [appliances, ustensils, ingredients] = optionsFilter(updatedList);
 
-            displayRecipes(list);
-            [appliances, ustensils, ingredients] = optionsFilter(list);
+            closeDivOptions();
 
             iconCloseSpan.addEventListener('click', () => {
                 spanOptionSelected.remove();
-                const indexOption = optionSelectedList.indexOf(
-                    item.textContent.toUpperCase(),
-                );
+                const indexOption = optionSelectedList.indexOf(item.textContent.toUpperCase());
                 optionSelectedList.splice(indexOption, 1);
 
-                list = filterByInput(valueInputUpdated.toUpperCase(), array);
-                list = filterByOption(optionSelectedList, list);
-                // updatedList = [...list];
+                updatedList = filterRecipes(optionSelectedList, recipesList, valueInputUpdated);
 
-                displayRecipes(list);
-                [appliances, ustensils, ingredients] = optionsFilter(list);
+                displayRecipes(updatedList);
+                [appliances, ustensils, ingredients] = optionsFilter(updatedList);
             });
         });
     });

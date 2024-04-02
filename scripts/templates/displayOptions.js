@@ -1,13 +1,13 @@
+// eslint-disable-next-line import/extensions
+import createElement from '../utils/createElement.js';
+
 const displayOptionSelected = (element) => {
     const divOptionsSelected = document.querySelector('#divOptionsSelected');
     const value = element.textContent;
 
-    const spanOptionSelected = document.createElement('span');
-    spanOptionSelected.setAttribute('class', 'bg-yellow px-4 py-3 flex justify-between items-center rounded-xl mr-6');
-    spanOptionSelected.textContent = value;
+    const spanOptionSelected = createElement('span', 'bg-yellow px-4 py-3 flex justify-between items-center rounded-xl mr-6', value);
 
-    const closeOption = document.createElement('i');
-    closeOption.setAttribute('class', 'fa-solid fa-xmark pl-8 cursor-pointer');
+    const closeOption = createElement('i', 'fa-solid fa-xmark pl-8 cursor-pointer');
 
     spanOptionSelected.appendChild(closeOption);
 
@@ -25,12 +25,7 @@ const forEachList = (array, elParent) => {
     array.sort((a, b) => a.localeCompare(b));
 
     array.forEach((element) => {
-        const liElement = document.createElement('li');
-        liElement.textContent = element;
-        liElement.classList.add('hover:bg-yellow');
-        liElement.classList.add('cursor-pointer');
-        liElement.classList.add('py-3');
-        liElement.classList.add('px-4');
+        const liElement = createElement('li', 'hover:bg-yellow cursor-pointer py-3 px-4', element, undefined);
 
         ulElement.appendChild(liElement);
     });
@@ -56,27 +51,20 @@ const displayOptions = (array, optionDiv) => {
     // fermeture des autres options ouvertes
     closeDivOptions();
 
-    const divOptions = document.createElement('div');
-    divOptions.setAttribute('id', `div-option-${optionDiv.dataset.name}`);
+    const divOptions = createElement('div', 'overflow-y-scroll max-h-52 scrollbar absolute left-0 bg-white z-10 w-48 rounded-bl-xl rounded-br-xl', undefined, `div-option-${optionDiv.dataset.name}`);
     divOptions.setAttribute('data-name', 'div-options');
-    divOptions.setAttribute('class', 'overflow-y-scroll max-h-52 scrollbar absolute left-0 bg-white z-10 w-48 rounded-bl-xl rounded-br-xl');
 
-    const inputSearch = document.createElement('input');
+    const inputSearch = createElement('input', 'border-slate-300 border-solid border block py-2 pl-4 pr-14 my-3 mx-auto w-44 cursor-pointer focus:outline-none', undefined, 'input-option');
     inputSearch.setAttribute('type', 'text');
-    inputSearch.setAttribute('id', 'input-option');
     inputSearch.setAttribute('autocomplete', 'off');
-    inputSearch.setAttribute('class', 'border-slate-300 border-solid border block py-2 pl-4 pr-14 my-3 mx-auto w-44 cursor-pointer focus:outline-none');
 
     setTimeout(() => {
         inputSearch.focus();
     }, 100);
 
-    const iconSearch = document.createElement('i');
-    iconSearch.setAttribute('class', 'fa-solid fa-magnifying-glass absolute top-6 right-5 text-slate-400');
+    const iconSearch = createElement('i', 'fa-solid fa-magnifying-glass absolute top-6 right-5 text-slate-400');
 
-    const iconClose = document.createElement('i');
-    iconClose.setAttribute('class', 'fa-solid fa-xmark text-slate-400 absolute top-6 right-11 opacity-0 cursor-pointer');
-    iconClose.setAttribute('id', 'icon-option');
+    const iconClose = createElement('i', 'fa-solid fa-xmark text-slate-400 absolute top-6 right-11 opacity-0 cursor-pointer', undefined, 'icon-option');
 
     divOptions.appendChild(iconSearch);
     divOptions.appendChild(iconClose);

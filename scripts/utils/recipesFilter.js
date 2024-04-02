@@ -1,4 +1,8 @@
-const filterByInput = (inputValue, array) => {
+const filterInput = (inputValue, array) => {
+    if (inputValue === '') {
+        return array;
+    }
+
     const recipesFiltering = array.filter((element) => {
         if (element.name.toUpperCase().includes(inputValue)) {
             return true;
@@ -16,19 +20,27 @@ const filterByInput = (inputValue, array) => {
     return recipesFiltering;
 };
 
-const filterByOption = (optionList, array) => {
+export default (optionList, array, inputValue) => {
+    const arrayFiltered = filterInput(inputValue, array);
+
+    const lastOption = optionList.at(-1);
+
+    if (optionList.length === 0) {
+        return arrayFiltered;
+    }
+
     const inTheArray = [];
     const recipesFiltered = [];
 
-    array.forEach((element) => {
+    arrayFiltered.forEach((element) => {
         const { appliance, ustensils, ingredients } = element;
 
-        if (optionList.includes(appliance)) {
+        if (lastOption.includes(appliance)) {
             if (!inTheArray.includes(element.name)) {
                 recipesFiltered.push(element);
                 inTheArray.push(element.name);
             }
-        } else if (ustensils.some((ustensil) => optionList.includes(ustensil.toUpperCase()))) {
+        } else if (ustensils.some((ustensil) => lastOption.includes(ustensil.toUpperCase()))) {
             if (!inTheArray.includes(element.name)) {
                 recipesFiltered.push(element);
                 inTheArray.push(element.name);
@@ -37,7 +49,7 @@ const filterByOption = (optionList, array) => {
             ingredients.forEach((ingredient) => {
                 const ingredientName = ingredient.ingredient.toUpperCase();
 
-                if (optionList.includes(ingredientName)) {
+                if (lastOption.includes(ingredientName)) {
                     if (!inTheArray.includes(element.name)) {
                         recipesFiltered.push(element);
                         inTheArray.push(element.name);
@@ -47,7 +59,5 @@ const filterByOption = (optionList, array) => {
         }
     });
 
-    return recipesFiltered.length > 0 ? recipesFiltered : array;
+    return recipesFiltered;
 };
-
-export { filterByInput, filterByOption };
