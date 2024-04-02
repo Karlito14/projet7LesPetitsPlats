@@ -3,20 +3,24 @@ const filterInput = (inputValue, array) => {
         return array;
     }
 
-    const recipesFiltering = array.filter((element) => {
-        if (element.name.toUpperCase().includes(inputValue)) {
-            return true;
-        }
+    const recipesFiltering = [];
 
-        for (let i = 0; i < element.ingredients.length; i += 1) {
-            const ingredient = element.ingredients[i].ingredient.toUpperCase();
-            if (ingredient.includes(inputValue)) {
-                return true;
+    for (let i = 0; i < array.length; i += 1) {
+        const element = array[i];
+        if (element.name.toUpperCase().includes(inputValue)) {
+            recipesFiltering.push(element);
+        } else if (element.description.toUpperCase().includes(inputValue)) {
+            recipesFiltering.push(element);
+        } else {
+            for (let j = 0; j < element.ingredients.length; j += 1) {
+                const ingredient = element.ingredients[j].ingredient.toUpperCase();
+                if (ingredient.includes(inputValue)) {
+                    recipesFiltering.push(element);
+                }
             }
         }
+    }
 
-        return element.description.toUpperCase().includes(inputValue);
-    });
     return recipesFiltering;
 };
 
@@ -32,7 +36,8 @@ export default (optionList, array, inputValue) => {
     const inTheArray = [];
     const recipesFiltered = [];
 
-    arrayFiltered.forEach((element) => {
+    for (let i = 0; i < arrayFiltered.length; i += 1) {
+        const element = arrayFiltered[i];
         const { appliance, ustensils, ingredients } = element;
 
         if (lastOption.includes(appliance)) {
@@ -57,7 +62,7 @@ export default (optionList, array, inputValue) => {
                 }
             });
         }
-    });
+    }
 
     return recipesFiltered;
 };
