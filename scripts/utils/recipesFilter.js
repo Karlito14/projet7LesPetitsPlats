@@ -40,7 +40,7 @@ export default (optionList, array, inputValue) => {
         const element = arrayFiltered[i];
         const { appliance, ustensils, ingredients } = element;
 
-        if (lastOption.includes(appliance)) {
+        if (lastOption.includes(appliance.toUpperCase())) {
             if (!inTheArray.includes(element.name)) {
                 recipesFiltered.push(element);
                 inTheArray.push(element.name);

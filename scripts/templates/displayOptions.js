@@ -51,10 +51,10 @@ const displayOptions = (array, optionDiv) => {
     // fermeture des autres options ouvertes
     closeDivOptions();
 
-    const divOptions = createElement('div', 'overflow-y-scroll max-h-52 scrollbar absolute left-0 bg-white z-10 w-48 rounded-bl-xl rounded-br-xl', undefined, `div-option-${optionDiv.dataset.name}`);
+    const divOptions = createElement('div', 'overflow-y-scroll max-h-52 scrollbar absolute left-0 bg-white z-10 md:w-48 rounded-bl-xl rounded-br-xl w-full', undefined, `div-option-${optionDiv.dataset.name}`);
     divOptions.setAttribute('data-name', 'div-options');
 
-    const inputSearch = createElement('input', 'border-slate-300 border-solid border block py-2 pl-4 pr-14 my-3 mx-auto w-44 cursor-pointer focus:outline-none', undefined, 'input-option');
+    const inputSearch = createElement('input', 'border-slate-300 border-solid border block py-2 pl-4 pr-14 my-3 mx-auto md:w-44 cursor-pointer focus:outline-none w-11/12', undefined, 'input-option');
     inputSearch.setAttribute('type', 'text');
     inputSearch.setAttribute('autocomplete', 'off');
 

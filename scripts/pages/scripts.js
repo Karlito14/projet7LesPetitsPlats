@@ -128,9 +128,8 @@ function elementLiClick(ulElement) {
             const spanOptionSelected = displayOptionSelected(item);
             const iconCloseSpan = spanOptionSelected.querySelector('i');
 
-            if (!optionSelectedList.includes(item.textContent.toUpperCase())) {
-                optionSelectedList.push(item.textContent.toUpperCase());
-            }
+            optionSelectedList.push(item.textContent.toUpperCase());
+
             updatedList = filterRecipes(optionSelectedList, updatedList, valueInputUpdated);
 
             displayRecipes(updatedList);
