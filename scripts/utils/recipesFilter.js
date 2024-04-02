@@ -8,14 +8,14 @@ const filterInput = (inputValue, array) => {
             return true;
         }
 
-        for (let i = 0; i < element.ingredients.length; i += 1) {
-            const ingredient = element.ingredients[i].ingredient.toUpperCase();
-            if (ingredient.includes(inputValue)) {
-                return true;
-            }
+        if (element.description.toUpperCase().includes(inputValue)) {
+            return true;
         }
 
-        return element.description.toUpperCase().includes(inputValue);
+        return element.ingredients.some((ingredient) => {
+            const ingredientName = ingredient.ingredient.toUpperCase();
+            return ingredientName.includes(inputValue);
+        });
     });
     return recipesFiltering;
 };
