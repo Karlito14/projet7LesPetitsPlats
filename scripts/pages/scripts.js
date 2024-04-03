@@ -120,7 +120,7 @@ options.forEach((option) => {
     });
 });
 
-// Functions
+/* ***************************** Functions ***************************** */
 function elementLiClick(ulElement) {
     const allElementsLi = ulElement.querySelectorAll('li');
     allElementsLi.forEach((item) => {

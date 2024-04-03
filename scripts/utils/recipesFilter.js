@@ -27,11 +27,11 @@ const filterInput = (inputValue, array) => {
 export default (optionList, array, inputValue) => {
     const arrayFiltered = filterInput(inputValue, array);
 
-    const lastOption = optionList.at(-1);
-
     if (optionList.length === 0) {
         return arrayFiltered;
     }
+
+    const lastOption = optionList.at(-1);
 
     const inTheArray = [];
     const recipesFiltered = [];
