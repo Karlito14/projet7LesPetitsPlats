@@ -4,7 +4,16 @@
 
 
 @layer base {
-    body {
-      font-family: "Manrope", sans-serif;
-    }
+  body {
+    font-family: "Manrope", sans-serif;
+    box-sizing: border-box;
   }
+
+  .scrollbar::-webkit-scrollbar { 
+    display: none; 
+  }
+
+  .scrollbar {
+    scrollbar-width: none;
+  }
+}
