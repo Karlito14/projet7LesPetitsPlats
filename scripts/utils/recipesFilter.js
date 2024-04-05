@@ -51,7 +51,8 @@ export default (optionList, array, inputValue) => {
                 inTheArray.push(element.name);
             }
         } else {
-            ingredients.forEach((ingredient) => {
+            for (let j = 0; j < ingredients.length; j += 1) {
+                const ingredient = ingredients[j];
                 const ingredientName = ingredient.ingredient.toUpperCase();
 
                 if (lastOption.includes(ingredientName)) {
@@ -60,7 +61,7 @@ export default (optionList, array, inputValue) => {
                         inTheArray.push(element.name);
                     }
                 }
-            });
+            }
         }
     }
 
