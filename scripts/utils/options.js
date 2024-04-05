@@ -26,7 +26,9 @@ const optionsFilter = (array) => {
 };
 
 const filterBySearchOption = (array, value) => {
-    const updateOptions = array.filter((element) => element.toUpperCase().includes(value));
+    const updateOptions = array.filter((element) =>
+        element.toUpperCase().includes(value),
+    );
     return updateOptions;
 };
 

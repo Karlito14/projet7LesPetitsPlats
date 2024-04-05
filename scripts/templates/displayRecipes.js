@@ -23,12 +23,22 @@ const renderRecipe = (recipe) => {
 
     recipe.ingredients.forEach((item) => {
         const elLi = document.createElement('li');
-        const ingredientTitle = createElement('h5', 'font-semibold text-sm', item.ingredient, undefined);
+        const ingredientTitle = createElement(
+            'h5',
+            'font-semibold text-sm',
+            item.ingredient,
+            undefined,
+        );
 
         elLi.appendChild(ingredientTitle);
 
         if (item.quantity) {
-            const spanQuantity = createElement('span', 'text-neutral-500', `${item.quantity} ${item.unit ?? ''}`, undefined);
+            const spanQuantity = createElement(
+                'span',
+                'text-neutral-500',
+                `${item.quantity} ${item.unit ?? ''}`,
+                undefined,
+            );
             spanQuantity.setAttribute('aria-label', 'quantité');
             elLi.appendChild(spanQuantity);
         }
@@ -41,14 +51,19 @@ const renderRecipe = (recipe) => {
 
 export default (data, value) => {
     recipesSection.innerHTML = '';
-    recipesNumber.textContent = `${data.length} recettes`;
+    recipesNumber.textContent = `${data.length} recette${data.length > 1 ? 's' : ''}`;
 
     let error = document.querySelector('#error');
     error?.remove();
 
     if (data.length === 0) {
-        error = createElement('p', 'text-xl font-bold text-center', `Aucune recette ne contient ${value} vous pouvez chercher «
-        tarte aux pommes », « poisson », etc`, 'error');
+        error = createElement(
+            'p',
+            'text-xl font-bold text-center',
+            `Aucune recette ne contient ${value} vous pouvez chercher «
+        tarte aux pommes », « poisson », etc`,
+            'error',
+        );
         recipesSection.after(error);
     } else {
         data.forEach((element) => {
