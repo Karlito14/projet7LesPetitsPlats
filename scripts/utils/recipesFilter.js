@@ -45,7 +45,9 @@ export default (optionList, array, inputValue) => {
                 recipesFiltered.push(element);
                 inTheArray.push(element.name);
             }
-        } else if (ustensils.some((ustensil) => lastOption.includes(ustensil.toUpperCase()))) {
+        } else if (
+            ustensils.some((ustensil) => lastOption.includes(ustensil.toUpperCase()))
+        ) {
             if (!inTheArray.includes(element.name)) {
                 recipesFiltered.push(element);
                 inTheArray.push(element.name);

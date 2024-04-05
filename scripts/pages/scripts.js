@@ -40,7 +40,11 @@ searchBar.addEventListener('input', (event) => {
     displayCloseIcon(valueInputUpdated, closeIcon);
 
     if (valueInputUpdated.length >= 3 || valueInputUpdated.length === 0) {
-        updatedList = filterRecipes(optionSelectedList, recipesList, valueInputUpdated);
+        updatedList = filterRecipes(
+            optionSelectedList,
+            recipesList,
+            valueInputUpdated,
+        );
     }
 
     displayRecipes(updatedList, valueInputUpdated);
@@ -62,7 +66,11 @@ searchBar.addEventListener('keydown', (event) => {
 closeIcon.addEventListener('click', () => {
     valueInputUpdated = '';
     deleteWithIcon(searchBar, closeIcon);
-    updatedList = filterRecipes(optionSelectedList, recipesList, valueInputUpdated);
+    updatedList = filterRecipes(
+        optionSelectedList,
+        recipesList,
+        valueInputUpdated,
+    );
 
     displayRecipes(updatedList);
     [appliances, ustensils, ingredients] = optionsFilter(updatedList);
@@ -82,8 +90,12 @@ options.forEach((option) => {
             availableOptions = ustensils;
         }
 
-        const divOptions = document.querySelector(`#div-option-${option.dataset.name}`);
-        const iconChevron = document.querySelector(`#icon-${option.dataset.name}`);
+        const divOptions = document.querySelector(
+            `#div-option-${option.dataset.name}`,
+        );
+        const iconChevron = document.querySelector(
+            `#icon-${option.dataset.name}`,
+        );
         iconChevron.classList.toggle('rotate-180');
 
         if (divOptions) {
@@ -105,7 +117,10 @@ options.forEach((option) => {
 
             displayCloseIcon(valueInput, iconOption);
 
-            const updatedOptions = filterBySearchOption([...availableOptions], valueInput);
+            const updatedOptions = filterBySearchOption(
+                [...availableOptions],
+                valueInput,
+            );
 
             forEachList(updatedOptions, optionClicked);
 
@@ -130,7 +145,11 @@ function elementLiClick(ulElement) {
 
             optionSelectedList.push(item.textContent.toUpperCase());
 
-            updatedList = filterRecipes(optionSelectedList, updatedList, valueInputUpdated);
+            updatedList = filterRecipes(
+                optionSelectedList,
+                updatedList,
+                valueInputUpdated,
+            );
 
             displayRecipes(updatedList);
             [appliances, ustensils, ingredients] = optionsFilter(updatedList);
@@ -139,10 +158,16 @@ function elementLiClick(ulElement) {
 
             iconCloseSpan.addEventListener('click', () => {
                 spanOptionSelected.remove();
-                const indexOption = optionSelectedList.indexOf(item.textContent.toUpperCase());
+                const indexOption = optionSelectedList.indexOf(
+                    item.textContent.toUpperCase(),
+                );
                 optionSelectedList.splice(indexOption, 1);
 
-                updatedList = filterRecipes(optionSelectedList, recipesList, valueInputUpdated);
+                updatedList = filterRecipes(
+                    optionSelectedList,
+                    recipesList,
+                    valueInputUpdated,
+                );
 
                 displayRecipes(updatedList);
                 [appliances, ustensils, ingredients] = optionsFilter(updatedList);

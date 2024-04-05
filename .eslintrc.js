@@ -27,5 +27,6 @@ module.exports = {
         'linebreak-style': 0,
         indent: ['error', 4, { SwitchCase: 1 }],
         'no-console': 'off',
+        'object-curly-newline': 'off',
     },
 };

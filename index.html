@@ -1,154 +1,170 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-  <head>
-    <!-- - - - - - - - -    Balises Meta  - - - - - - - - -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="description"
-      content="Les Petits Plats est un site de recettes de cuisine à l’instar de Marmiton ou 750g"
-    />
-    <!-- - - - - - - - -    Title   - - - - - - - - -->
-    <title>Les Petits Plats</title>
-    <!-- - - - - - - - -    Favicon   - - - - - - - - -->
-    <link rel="icon" type="image/png" href="./assets/images/favicon.png" />
-    <!-- - - - - - - - -    Google font   - - - - - - - - -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap"
-      rel="stylesheet"
-    />
-    <!-- - - - - - - - -    Style CSS   - - - - - - - - -->
-    <link href="./styles/output.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <header
-      class="h-600 bg-no-repeat bg-center bg-cover relative flex justify-center align-center flex-col"
-      style="background-image: url('./assets/images/background.jpg')"
-    >
-      <div class="py-12 md:px-14 px-8 absolute inset-0">
-        <img class="w-52" src="./assets/images/Logo.png" alt="image logo" />
-      </div>
-      <div class="text-center px-8">
-        <h1 class="text-yellow text-4xl font-anton leading-10 mb-8">
-          CHERCHEZ PARMI PLUS DE 1500 RECETTES <br />DU QUOTIDIEN,SIMPLES ET
-          DÉLICIEUSES
-        </h1>
-        <form class="relative md:w-3/5 mx-auto w-full">
-          <input
-            type="text"
-            id="searchBar"
-            autocomplete="off"
-            autofocus
-            placeholder="Rechercher une recette, un ingrédient..."
-            class="w-full pl-6 pr-28 py-5 rounded-xl cursor-pointer focus:outline-none placeholder:text-ellipsis"
-            pattern="^[A-Za-z\s]+$"
-            title="Veuillez saisir uniquement des lettres et espaces."
-          />
-          <i
-            id="closeIcon"
-            class="fa-solid fa-xmark absolute text-2xl top-2/4 -translate-y-1/2 right-20 text-slate-500 opacity-0 cursor-pointer"
-          ></i>
-          <i
-            class="fa-solid fa-magnifying-glass absolute top-2/4 -translate-y-1/2 right-3 text-3xl bg-gray-950 p-3 text-white rounded-lg cursor-pointer hover:bg-yellow hover:text-black transition-all duration-300"
-          ></i>
-        </form>
-      </div>
-    </header>
-
-    <main class="bg-neutral-200 px-14 py-6 lg:px-24 h-full">
-      <div
-        class="flex flex-col space-y-4 lg:flex-row lg:justify-between lg:items-center"
-      >
-        <div
-          class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-8 lg:space-x-14"
+    <head>
+        <!-- - - - - - - - -    Balises Meta  - - - - - - - - -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta
+            name="description"
+            content="Les Petits Plats est un site de recettes de cuisine à l’instar de Marmiton ou 750g"
+        />
+        <!-- - - - - - - - -    Title   - - - - - - - - -->
+        <title>Les Petits Plats</title>
+        <!-- - - - - - - - -    Favicon   - - - - - - - - -->
+        <link rel="icon" type="image/png" href="./assets/images/favicon.png" />
+        <!-- - - - - - - - -    Google font   - - - - - - - - -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap"
+            rel="stylesheet"
+        />
+        <!-- - - - - - - - -    Style CSS   - - - - - - - - -->
+        <link href="./styles/output.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <header
+            class="align-center relative flex h-600 flex-col justify-center bg-cover bg-center bg-no-repeat"
+            style="background-image: url('./assets/images/background.jpg')"
         >
-          <div
-            class="bg-white items-center p-4 rounded-lg md:w-48 relative w-full"
-            data-name="div-parent"
-          >
-            <div
-              data-name="ingredients"
-              class="flex cursor-pointer justify-between"
-            >
-              <h3 class="mr-16">Ingrédients</h3>
-              <i class="fa-solid fa-chevron-down" id="icon-ingredients"></i>
+            <div class="absolute inset-0 px-8 py-12 md:px-14">
+                <img
+                    class="w-52"
+                    src="./assets/images/Logo.png"
+                    alt="image logo"
+                />
             </div>
-          </div>
-          <div
-            class="bg-white items-center p-4 rounded-lg md:w-48 relative w-full"
-            data-name="div-parent"
-          >
-            <div
-              data-name="appliance"
-              class="flex cursor-pointer justify-between"
-            >
-              <h3 class="mr-16">Appareils</h3>
-              <i class="fa-solid fa-chevron-down" id="icon-appliance"></i>
+            <div class="px-8 text-center">
+                <h1 class="mb-8 font-anton text-4xl leading-10 text-yellow">
+                    CHERCHEZ PARMI PLUS DE 1500 RECETTES <br />DU
+                    QUOTIDIEN,SIMPLES ET DÉLICIEUSES
+                </h1>
+                <form class="relative mx-auto w-full md:w-3/5">
+                    <input
+                        type="text"
+                        id="searchBar"
+                        autocomplete="off"
+                        autofocus
+                        placeholder="Rechercher une recette, un ingrédient..."
+                        class="w-full cursor-pointer rounded-xl py-5 pl-6 pr-28 placeholder:text-ellipsis focus:outline-none"
+                        pattern="^[A-Za-z\s]+$"
+                        title="Veuillez saisir uniquement des lettres et espaces."
+                    />
+                    <i
+                        id="closeIcon"
+                        class="fa-solid fa-xmark absolute right-20 top-2/4 -translate-y-1/2 cursor-pointer text-2xl text-slate-500 opacity-0"
+                    ></i>
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute right-3 top-2/4 -translate-y-1/2 cursor-pointer rounded-lg bg-gray-950 p-3 text-3xl text-white transition-all duration-300 hover:bg-yellow hover:text-black"
+                    ></i>
+                </form>
             </div>
-          </div>
-          <div
-            class="bg-white items-center p-4 rounded-lg md:w-48 relative w-full"
-            data-name="div-parent"
-          >
-            <div
-              data-name="ustensils"
-              class="flex cursor-pointer justify-between"
-            >
-              <h3 class="mr-16">Ustensiles</h3>
-              <i class="fa-solid fa-chevron-down" id="icon-ustensils"></i>
-            </div>
-          </div>
-        </div>
-        <h2
-          aria-label="nombre de recettes"
-          class="font-anton text-xl"
-          id="recipesNumber"
-        >
-          Recettes
-        </h2>
-      </div>
-      <div class="flex items-center mt-5" id="divOptionsSelected"></div>
-      <div
-        class="grid gap-20 grid-cols-1 mt-4 md:grid-cols-2 lg:grid-cols-3"
-        id="recipesSection"
-      ></div>
-    </main>
+        </header>
 
-    <!-- - - - - - - - -    Template   - - - - - - - - -->
-    <template id="article">
-      <article class="shadow-article relative rounded-xl bg-white">
-        <mark
-          class="absolute px-3 py-1 top-4 right-4 bg-yellow rounded-xl"
-          id="recipeTime"
-        ></mark>
-        <img class="h-60 w-full object-cover rounded-t-xl" id="recipeImage" />
-        <div class="rounded-b-xl px-6 py-7">
-          <h3 class="font-anton mb-8" id="recipeTitle"></h3>
-          <div>
-            <h4 class="text-neutral-500 mb-4">Recette</h4>
-            <p
-              class="mb-8 h-[7.5rem] overflow-hidden hover:overflow-auto"
-              id="recipeDescription"
-            ></p>
-          </div>
-          <div>
-            <h4 class="text-neutral-500 mb-4">Ingrédients</h4>
-            <ul
-              class="grid grid-cols-2 gap-y-5 gap-x-2"
-              id="ingredientsList"
-            ></ul>
-          </div>
-        </div>
-      </article>
-    </template>
+        <main class="h-full bg-neutral-200 px-14 py-6 lg:px-24">
+            <div
+                class="flex flex-col space-y-4 lg:flex-row lg:items-center lg:justify-between"
+            >
+                <div
+                    class="flex flex-col space-y-4 md:flex-row md:space-x-8 md:space-y-0 lg:space-x-14"
+                >
+                    <div
+                        class="relative w-full items-center rounded-lg bg-white p-4 md:w-48"
+                        data-name="div-parent"
+                    >
+                        <div
+                            data-name="ingredients"
+                            class="flex cursor-pointer justify-between"
+                        >
+                            <h3 class="mr-16">Ingrédients</h3>
+                            <i
+                                class="fa-solid fa-chevron-down"
+                                id="icon-ingredients"
+                            ></i>
+                        </div>
+                    </div>
+                    <div
+                        class="relative w-full items-center rounded-lg bg-white p-4 md:w-48"
+                        data-name="div-parent"
+                    >
+                        <div
+                            data-name="appliance"
+                            class="flex cursor-pointer justify-between"
+                        >
+                            <h3 class="mr-16">Appareils</h3>
+                            <i
+                                class="fa-solid fa-chevron-down"
+                                id="icon-appliance"
+                            ></i>
+                        </div>
+                    </div>
+                    <div
+                        class="relative w-full items-center rounded-lg bg-white p-4 md:w-48"
+                        data-name="div-parent"
+                    >
+                        <div
+                            data-name="ustensils"
+                            class="flex cursor-pointer justify-between"
+                        >
+                            <h3 class="mr-16">Ustensiles</h3>
+                            <i
+                                class="fa-solid fa-chevron-down"
+                                id="icon-ustensils"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+                <h2
+                    aria-label="nombre de recettes"
+                    class="font-anton text-xl"
+                    id="recipesNumber"
+                >
+                    Recettes
+                </h2>
+            </div>
+            <div class="mt-5 flex items-center" id="divOptionsSelected"></div>
+            <div
+                class="mt-4 grid grid-cols-1 gap-20 md:grid-cols-2 lg:grid-cols-3"
+                id="recipesSection"
+            ></div>
+        </main>
 
-    <!-- - - - - - - - -    Icones fontawesome   - - - - - - - - -->
-    <script
-      src="https://kit.fontawesome.com/a8c57682fc.js"
-      crossorigin="anonymous"
-    ></script>
-    <script type="module" src="./scripts/pages/scripts.js"></script>
-  </body>
+        <!-- - - - - - - - -    Template   - - - - - - - - -->
+        <template id="article">
+            <article class="relative rounded-xl bg-white shadow-article">
+                <mark
+                    class="absolute right-4 top-4 rounded-xl bg-yellow px-3 py-1"
+                    id="recipeTime"
+                ></mark>
+                <img
+                    class="h-60 w-full rounded-t-xl object-cover"
+                    id="recipeImage"
+                />
+                <div class="rounded-b-xl px-6 py-7">
+                    <h3 class="mb-8 font-anton" id="recipeTitle"></h3>
+                    <div>
+                        <h4 class="mb-4 text-neutral-500">Recette</h4>
+                        <p
+                            class="mb-8 h-[7.5rem] overflow-hidden hover:overflow-auto"
+                            id="recipeDescription"
+                        ></p>
+                    </div>
+                    <div>
+                        <h4 class="mb-4 text-neutral-500">Ingrédients</h4>
+                        <ul
+                            class="grid grid-cols-2 gap-x-2 gap-y-5"
+                            id="ingredientsList"
+                        ></ul>
+                    </div>
+                </div>
+            </article>
+        </template>
+
+        <!-- - - - - - - - -    Icones fontawesome   - - - - - - - - -->
+        <script
+            src="https://kit.fontawesome.com/a8c57682fc.js"
+            crossorigin="anonymous"
+        ></script>
+        <script type="module" src="./scripts/pages/scripts.js"></script>
+    </body>
 </html>
