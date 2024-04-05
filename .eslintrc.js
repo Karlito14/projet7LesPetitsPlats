@@ -3,7 +3,7 @@ module.exports = {
         browser: true,
         es2021: true,
     },
-    extends: 'airbnb-base',
+    extends: ['airbnb-base', 'prettier'],
     overrides: [
         {
             env: {
@@ -27,5 +27,6 @@ module.exports = {
         'linebreak-style': 0,
         indent: ['error', 4, { SwitchCase: 1 }],
         'no-console': 'off',
+        'object-curly-newline': 'off',
     },
 };
