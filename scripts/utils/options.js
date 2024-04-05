@@ -3,7 +3,9 @@ const optionsFilter = (array) => {
     const ustensils = [];
     const ingredients = [];
 
-    array.forEach((recipe) => {
+    for (let i = 0; i < array.length; i += 1) {
+        const recipe = array[i];
+
         if (!appliance.includes(recipe.appliance)) {
             appliance.push(recipe.appliance);
         }
@@ -14,13 +16,14 @@ const optionsFilter = (array) => {
             }
         });
 
-        recipe.ingredients.forEach((ingredient) => {
+        for (let j = 0; j < recipe.ingredients.length; j += 1) {
+            const ingredient = recipe.ingredients[j];
             const ingredientName = ingredient.ingredient;
             if (!ingredients.includes(ingredientName)) {
                 ingredients.push(ingredientName);
             }
-        });
-    });
+        }
+    }
 
     return [appliance, ustensils, ingredients];
 };
