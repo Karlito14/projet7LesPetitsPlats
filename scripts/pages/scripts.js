@@ -12,6 +12,7 @@ import {
     displayOptionSelected,
 } from '../templates/displayOptions.js';
 
+/* ******************** DOM elements ******************** */
 const body = document.querySelector('body');
 const searchBar = document.querySelector('#searchBar');
 const closeIcon = document.querySelector('#closeIcon');
@@ -24,27 +25,16 @@ let updatedList = [...recipesList];
 let valueInputUpdated = '';
 const optionSelectedList = [];
 
+displayRecipes(recipesList);
+let [appliances, ustensils, ingredients] = optionsFilter(recipesList);
+
+/* ******************** Event Listeners ******************** */
 body.addEventListener('click', () => {
     closeDivOptions();
 });
 
-displayRecipes(recipesList);
-let [appliances, ustensils, ingredients] = optionsFilter(recipesList);
-
 searchBar.addEventListener('input', (event) => {
-    searchBar.setCustomValidity('');
-    searchBar.checkValidity();
-
-    valueInputUpdated = event.target.value.trim().toUpperCase();
-
-    displayCloseIcon(valueInputUpdated, closeIcon);
-
-    if (valueInputUpdated.length >= 3 || valueInputUpdated.length === 0) {
-        updatedList = filterRecipes(optionSelectedList, recipesList, valueInputUpdated);
-    }
-
-    displayRecipes(updatedList, valueInputUpdated);
-    [appliances, ustensils, ingredients] = optionsFilter(updatedList);
+    eventInputSearchBar(event);
 });
 
 searchBar.addEventListener('invalid', () => {
@@ -59,14 +49,7 @@ searchBar.addEventListener('keydown', (event) => {
     }
 });
 
-closeIcon.addEventListener('click', () => {
-    valueInputUpdated = '';
-    deleteWithIcon(searchBar, closeIcon);
-    updatedList = filterRecipes(optionSelectedList, recipesList, valueInputUpdated);
-
-    displayRecipes(updatedList);
-    [appliances, ustensils, ingredients] = optionsFilter(updatedList);
-});
+closeIcon.addEventListener('click', eventCloseIcon);
 
 options.forEach((option) => {
     option.addEventListener('click', (event) => {
@@ -120,7 +103,7 @@ options.forEach((option) => {
     });
 });
 
-// Functions
+/* ******************** Functions ******************** */
 function elementLiClick(ulElement) {
     const allElementsLi = ulElement.querySelectorAll('li');
     allElementsLi.forEach((item) => {
@@ -149,4 +132,29 @@ function elementLiClick(ulElement) {
             });
         });
     });
+}
+
+function eventInputSearchBar(event) {
+    searchBar.setCustomValidity('');
+    searchBar.checkValidity();
+
+    valueInputUpdated = event.target.value.trim().toUpperCase();
+
+    displayCloseIcon(valueInputUpdated, closeIcon);
+
+    if (valueInputUpdated.length >= 3 || valueInputUpdated.length === 0) {
+        updatedList = filterRecipes(optionSelectedList, recipesList, valueInputUpdated);
+    }
+
+    displayRecipes(updatedList, valueInputUpdated);
+    [appliances, ustensils, ingredients] = optionsFilter(updatedList);
+}
+
+function eventCloseIcon() {
+    valueInputUpdated = '';
+    deleteWithIcon(searchBar, closeIcon);
+    updatedList = filterRecipes(optionSelectedList, recipesList, valueInputUpdated);
+
+    displayRecipes(updatedList);
+    [appliances, ustensils, ingredients] = optionsFilter(updatedList);
 }
