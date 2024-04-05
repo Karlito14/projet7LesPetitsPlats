@@ -5,21 +5,20 @@ const filterInput = (inputValue, array) => {
 
     const recipesFiltering = [];
 
-    for (let i = 0; i < array.length; i += 1) {
-        const element = array[i];
+    array.forEach((element) => {
         if (element.name.toUpperCase().includes(inputValue)) {
             recipesFiltering.push(element);
         } else if (element.description.toUpperCase().includes(inputValue)) {
             recipesFiltering.push(element);
         } else {
-            for (let j = 0; j < element.ingredients.length; j += 1) {
-                const ingredient = element.ingredients[j].ingredient.toUpperCase();
+            element.ingredients.forEach((item) => {
+                const ingredient = item.ingredient.toUpperCase();
                 if (ingredient.includes(inputValue)) {
                     recipesFiltering.push(element);
                 }
-            }
+            });
         }
-    }
+    });
 
     return recipesFiltering;
 };
@@ -36,8 +35,7 @@ export default (optionList, array, inputValue) => {
     const inTheArray = [];
     const recipesFiltered = [];
 
-    for (let i = 0; i < arrayFiltered.length; i += 1) {
-        const element = arrayFiltered[i];
+    arrayFiltered.forEach((element) => {
         const { appliance, ustensils, ingredients } = element;
 
         if (lastOption.includes(appliance.toUpperCase())) {
@@ -51,8 +49,7 @@ export default (optionList, array, inputValue) => {
                 inTheArray.push(element.name);
             }
         } else {
-            for (let j = 0; j < ingredients.length; j += 1) {
-                const ingredient = ingredients[j];
+            ingredients.forEach((ingredient) => {
                 const ingredientName = ingredient.ingredient.toUpperCase();
 
                 if (lastOption.includes(ingredientName)) {
@@ -61,9 +58,9 @@ export default (optionList, array, inputValue) => {
                         inTheArray.push(element.name);
                     }
                 }
-            }
+            });
         }
-    }
+    });
 
     return recipesFiltered;
 };

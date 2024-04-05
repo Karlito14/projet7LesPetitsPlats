@@ -24,12 +24,11 @@ const forEachList = (array, elParent) => {
 
     array.sort((a, b) => a.localeCompare(b));
 
-    for (let i = 0; i < array.length; i += 1) {
-        const element = array[i];
+    array.forEach((element) => {
         const liElement = createElement('li', 'hover:bg-yellow cursor-pointer py-3 px-4', element, undefined);
 
         ulElement.appendChild(liElement);
-    }
+    });
 
     elParent.appendChild(ulElement);
 };
@@ -37,13 +36,12 @@ const forEachList = (array, elParent) => {
 const closeDivOptions = () => {
     const allDivOptions = document.querySelectorAll('[data-name=div-options]');
     if (allDivOptions.length > 0) {
-        for (let i = 0; i < allDivOptions.length; i += 1) {
-            const divOption = allDivOptions[i];
+        allDivOptions.forEach((divOption) => {
             const parentDiv = divOption.closest('[data-name=div-parent]');
             const bracket = parentDiv.querySelector('i');
             bracket.classList.remove('rotate-180');
             divOption.remove();
-        }
+        });
     }
 };
 

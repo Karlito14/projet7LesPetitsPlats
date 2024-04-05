@@ -21,8 +21,7 @@ const renderRecipe = (recipe) => {
     elImage.setAttribute('alt', recipe.name);
     elDescription.textContent = recipe.description;
 
-    for (let i = 0; i < recipe.ingredients.length; i += 1) {
-        const item = recipe.ingredients[i];
+    recipe.ingredients.forEach((item) => {
         const elLi = document.createElement('li');
         const ingredientTitle = createElement('h5', 'font-semibold text-sm', item.ingredient, undefined);
 
@@ -35,7 +34,7 @@ const renderRecipe = (recipe) => {
         }
 
         elList.appendChild(elLi);
-    }
+    });
 
     return clone;
 };
@@ -52,10 +51,9 @@ export default (data, value) => {
         tarte aux pommes », « poisson », etc`, 'error');
         recipesSection.after(error);
     } else {
-        for (let i = 0; i < data.length; i += 1) {
-            const element = data[i];
+        data.forEach((element) => {
             const recipeElement = renderRecipe(element);
             recipesSection.appendChild(recipeElement);
-        }
+        });
     }
 };
