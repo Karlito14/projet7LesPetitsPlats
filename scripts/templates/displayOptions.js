@@ -1,9 +1,8 @@
 // eslint-disable-next-line import/extensions
 import createElement from '../utils/createElement.js';
 
-const displayOptionSelected = (element) => {
+const displayOptionSelected = (value) => {
     const divOptionsSelected = document.querySelector('#divOptionsSelected');
-    const value = element.textContent;
 
     const spanOptionSelected = createElement(
         'span',
