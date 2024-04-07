@@ -21,12 +21,29 @@ const optionAppliance = document.querySelector('[data-name = appliance]');
 const optionUstensils = document.querySelector('[data-name = ustensils]');
 const options = [optionIngredients, optionUstensils, optionAppliance];
 
-let updatedList = [...recipesList];
 let valueInputUpdated = '';
-const optionSelectedList = [];
+const optionSelectedList = JSON.parse(localStorage.getItem("options")) || [];
+console.log(optionSelectedList)
+let updatedList = [...recipesList];
 
-displayRecipes(recipesList);
-let [appliances, ustensils, ingredients] = optionsFilter(recipesList);
+if(optionSelectedList.length > 0) {
+    updatedList = filterRecipes(
+        optionSelectedList,
+        recipesList,
+        valueInputUpdated,
+    );
+
+    optionSelectedList.forEach((element) => {
+        const spanOption = displayOptionSelected(element);
+        const iconCloseOption = spanOption.querySelector('i');
+        iconCloseOption.addEventListener('click', () => {
+            closeSpanOption(spanOption);
+        })
+    })
+}
+
+displayRecipes(updatedList);
+let [appliances, ustensils, ingredients] = optionsFilter(updatedList);
 
 /* ******************** Event Listeners ******************** */
 body.addEventListener('click', () => {
@@ -115,10 +132,11 @@ function elementLiClick(ulElement) {
     const allElementsLi = ulElement.querySelectorAll('li');
     allElementsLi.forEach((item) => {
         item.addEventListener('click', () => {
-            const spanOptionSelected = displayOptionSelected(item);
+            const spanOptionSelected = displayOptionSelected(item.textContent);
             const iconCloseSpan = spanOptionSelected.querySelector('i');
 
             optionSelectedList.push(item.textContent.toUpperCase());
+            localStorage.setItem("options", JSON.stringify(optionSelectedList));
 
             updatedList = filterRecipes(
                 optionSelectedList,
@@ -132,20 +150,7 @@ function elementLiClick(ulElement) {
             closeDivOptions();
 
             iconCloseSpan.addEventListener('click', () => {
-                spanOptionSelected.remove();
-                const indexOption = optionSelectedList.indexOf(
-                    item.textContent.toUpperCase(),
-                );
-                optionSelectedList.splice(indexOption, 1);
-
-                updatedList = filterRecipes(
-                    optionSelectedList,
-                    recipesList,
-                    valueInputUpdated,
-                );
-
-                displayRecipes(updatedList);
-                [appliances, ustensils, ingredients] = optionsFilter(updatedList);
+                closeSpanOption(spanOptionSelected);
             });
         });
     });
@@ -174,6 +179,24 @@ function eventInputSearchBar(event) {
 function eventCloseIcon() {
     valueInputUpdated = '';
     deleteWithIcon(searchBar, closeIcon);
+    updatedList = filterRecipes(
+        optionSelectedList,
+        recipesList,
+        valueInputUpdated,
+    );
+
+    displayRecipes(updatedList);
+    [appliances, ustensils, ingredients] = optionsFilter(updatedList);
+}
+
+function closeSpanOption (spanOption) {
+    spanOption.remove();
+    const indexOption = optionSelectedList.indexOf(
+        spanOption.textContent.toUpperCase(),
+    );
+    optionSelectedList.splice(indexOption, 1);
+    localStorage.setItem("options", JSON.stringify(optionSelectedList));
+
     updatedList = filterRecipes(
         optionSelectedList,
         recipesList,

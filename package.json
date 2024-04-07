@@ -8,7 +8,8 @@
     "dev": "http-server",
     "lint": "eslint --fix ./",
     "tailwind": "npx tailwindcss -i ./styles/style.css -o ./styles/output.css --watch",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier": "npx prettier --write index.html scripts"
   },
   "author": "",
   "license": "ISC",
