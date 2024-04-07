@@ -60,8 +60,7 @@ export default (data, value) => {
         error = createElement(
             'p',
             'text-xl font-bold text-center',
-            `Aucune recette ne contient ${value} vous pouvez chercher «
-        tarte aux pommes », « poisson », etc`,
+            `Aucune recette ne contient ${value} vous pouvez chercher « tarte aux pommes », « poisson », etc`,
             'error',
         );
         recipesSection.after(error);

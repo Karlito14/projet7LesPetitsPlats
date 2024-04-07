@@ -21,45 +21,49 @@ const filterInput = (inputValue, array) => {
 };
 
 export default (optionList, array, inputValue) => {
-    const arrayFiltered = filterInput(inputValue, array);
-
-    const lastOption = optionList.at(-1);
+    let arrayFiltered = filterInput(inputValue, array);
 
     if (optionList.length === 0) {
         return arrayFiltered;
     }
 
-    const inTheArray = [];
-    const recipesFiltered = [];
+    let inTheArray = [];
+    let recipesFiltered = []; 
 
-    arrayFiltered.forEach((element) => {
-        const { appliance, ustensils, ingredients } = element;
+    for (const option of optionList) {
+        recipesFiltered = [];
+        inTheArray = [];
+        // eslint-disable-next-line no-loop-func
+        arrayFiltered.forEach((element) => {
+            const { appliance, ustensils, ingredients } = element;
 
-        if (lastOption.includes(appliance.toUpperCase())) {
-            if (!inTheArray.includes(element.name)) {
-                recipesFiltered.push(element);
-                inTheArray.push(element.name);
-            }
-        } else if (
-            ustensils.some((ustensil) => lastOption.includes(ustensil.toUpperCase()))
-        ) {
-            if (!inTheArray.includes(element.name)) {
-                recipesFiltered.push(element);
-                inTheArray.push(element.name);
-            }
-        } else {
-            ingredients.forEach((ingredient) => {
-                const ingredientName = ingredient.ingredient.toUpperCase();
-
-                if (lastOption.includes(ingredientName)) {
-                    if (!inTheArray.includes(element.name)) {
-                        recipesFiltered.push(element);
-                        inTheArray.push(element.name);
-                    }
+            if (option.includes(appliance.toUpperCase())) {
+                if (!inTheArray.includes(element.name)) {
+                    recipesFiltered.push(element);
+                    inTheArray.push(element.name);
                 }
-            });
-        }
-    });
+            } else if (
+                ustensils.some((ustensil) => option.includes(ustensil.toUpperCase()))
+            ) {
+                if (!inTheArray.includes(element.name)) {
+                    recipesFiltered.push(element);
+                    inTheArray.push(element.name);
+                }
+            } else {
+                ingredients.forEach((ingredient) => {
+                    const ingredientName = ingredient.ingredient.toUpperCase();
 
+                    if (option.includes(ingredientName)) {
+                        if (!inTheArray.includes(element.name)) {
+                            recipesFiltered.push(element);
+                            inTheArray.push(element.name);
+                        }
+                    }
+                });
+            }
+            arrayFiltered = [...recipesFiltered];
+        }); 
+        
+    }
     return recipesFiltered;
 };

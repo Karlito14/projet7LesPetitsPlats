@@ -23,7 +23,6 @@ const options = [optionIngredients, optionUstensils, optionAppliance];
 
 let valueInputUpdated = '';
 const optionSelectedList = JSON.parse(localStorage.getItem("options")) || [];
-console.log(optionSelectedList)
 let updatedList = [...recipesList];
 
 if(optionSelectedList.length > 0) {
@@ -190,7 +189,6 @@ function eventCloseIcon() {
 }
 
 function closeSpanOption (spanOption) {
-    spanOption.remove();
     const indexOption = optionSelectedList.indexOf(
         spanOption.textContent.toUpperCase(),
     );
@@ -205,4 +203,6 @@ function closeSpanOption (spanOption) {
 
     displayRecipes(updatedList);
     [appliances, ustensils, ingredients] = optionsFilter(updatedList);
+
+    spanOption.remove();
 }
