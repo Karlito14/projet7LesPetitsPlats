@@ -28,5 +28,6 @@ module.exports = {
         indent: ['error', 4, { SwitchCase: 1 }],
         'no-console': 'off',
         'object-curly-newline': 'off',
+        "no-restricted-syntax": ["error", "FunctionExpression", "WithStatement", "BinaryExpression[operator='in']"],
     },
 };
