@@ -24,6 +24,8 @@ const options = [optionIngredients, optionUstensils, optionAppliance];
 let valueInputUpdated = '';
 const optionSelectedList = JSON.parse(localStorage.getItem("options")) || [];
 let updatedList = [...recipesList];
+const index = 6;
+let recipesNumberToDisplay = index;
 
 if(optionSelectedList.length > 0) {
     updatedList = filterRecipes(
@@ -41,7 +43,7 @@ if(optionSelectedList.length > 0) {
     })
 }
 
-displayRecipes(updatedList);
+displayRecipes(updatedList, valueInputUpdated, recipesNumberToDisplay);
 let [appliances, ustensils, ingredients] = optionsFilter(updatedList);
 
 /* ******************** Event Listeners ******************** */
@@ -50,8 +52,20 @@ body.addEventListener('click', () => {
 });
 
 searchBar.addEventListener('input', (event) => {
+    recipesNumberToDisplay = index;
     eventInputSearchBar(event);
 });
+
+window.addEventListener('scroll', () => {
+    const pageHeight = window.innerHeight;
+    const positionScroll = document.documentElement.scrollTop;
+    const pageHeightTotal = document.documentElement.offsetHeight;
+    
+    if (pageHeight + positionScroll >= pageHeightTotal) {
+        recipesNumberToDisplay += index;
+        displayRecipes(updatedList, valueInputUpdated, recipesNumberToDisplay);
+    }
+})
 
 searchBar.addEventListener('invalid', () => {
     searchBar.setCustomValidity(
@@ -143,7 +157,9 @@ function elementLiClick(ulElement) {
                 valueInputUpdated,
             );
 
-            displayRecipes(updatedList);
+            recipesNumberToDisplay = index;
+
+            displayRecipes(updatedList, valueInputUpdated, recipesNumberToDisplay);
             [appliances, ustensils, ingredients] = optionsFilter(updatedList);
 
             closeDivOptions();
@@ -171,7 +187,7 @@ function eventInputSearchBar(event) {
         );
     }
 
-    displayRecipes(updatedList, valueInputUpdated);
+    displayRecipes(updatedList, valueInputUpdated, recipesNumberToDisplay);
     [appliances, ustensils, ingredients] = optionsFilter(updatedList);
 }
 
@@ -184,7 +200,9 @@ function eventCloseIcon() {
         valueInputUpdated,
     );
 
-    displayRecipes(updatedList);
+    recipesNumberToDisplay = index;
+
+    displayRecipes(updatedList, valueInputUpdated, recipesNumberToDisplay);
     [appliances, ustensils, ingredients] = optionsFilter(updatedList);
 }
 
@@ -201,7 +219,9 @@ function closeSpanOption (spanOption) {
         valueInputUpdated,
     );
 
-    displayRecipes(updatedList);
+    recipesNumberToDisplay = index;
+
+    displayRecipes(updatedList, valueInputUpdated, recipesNumberToDisplay);
     [appliances, ustensils, ingredients] = optionsFilter(updatedList);
 
     spanOption.remove();

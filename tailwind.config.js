@@ -5,10 +5,10 @@ module.exports = {
         './scripts/*/*.js',
     ],
     theme: {
-        boxShadow: {
-            article: '0 4px 34px 10px rgba(0, 0, 0, 0.2)',
-        },
         extend: {
+            boxShadow: {
+                article: '0 4px 34px 10px rgba(0, 0, 0, 0.2)',
+            },
             height: {
                 600: '663px',
             },
@@ -17,7 +17,7 @@ module.exports = {
             },
             fontFamily: {
                 anton: ['Anton', 'sans-serif'],
-            },
+            }
         },
     },
     plugins: [],
