@@ -49,7 +49,7 @@ const renderRecipe = (recipe) => {
     return clone;
 };
 
-export default (data, value) => {
+export default (data, value, index) => {
     recipesSection.innerHTML = '';
     recipesNumber.textContent = `${data.length} recette${data.length > 1 ? 's' : ''}`;
 
@@ -65,7 +65,7 @@ export default (data, value) => {
         );
         recipesSection.after(error);
     } else {
-        data.forEach((element) => {
+        data.slice(0, index).forEach((element) => {
             const recipeElement = renderRecipe(element);
             recipesSection.appendChild(recipeElement);
         });
