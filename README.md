@@ -24,6 +24,10 @@ Les Petits Plats est un site web de recettes de cuisine à l’instar de Marmito
 - Comparer les 2 algorithmes et choisir la meilleur version
 - Créer un document de comparaison entre les 2 algorithmes avec des diagrammes
 
+#### Optionnel
+- Stocker les options dans le local storage
+- Créer un infinity loader
+
 ### Instructions
 
 - Le code est séparé en différents fichiers (HTML, CSS, JavaScript)

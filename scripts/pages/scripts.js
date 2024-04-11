@@ -61,7 +61,7 @@ window.addEventListener('scroll', () => {
     const positionScroll = document.documentElement.scrollTop;
     const pageHeightTotal = document.documentElement.offsetHeight;
     
-    if (pageHeight + positionScroll >= pageHeightTotal) {
+    if (pageHeight + positionScroll >= pageHeightTotal && recipesNumberToDisplay < updatedList.length) {
         recipesNumberToDisplay += index;
         displayRecipes(updatedList, valueInputUpdated, recipesNumberToDisplay);
     }
