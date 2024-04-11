@@ -25,46 +25,50 @@ const filterInput = (inputValue, array) => {
 };
 
 export default (optionList, array, inputValue) => {
-    const arrayFiltered = filterInput(inputValue, array);
+    let arrayFiltered = filterInput(inputValue, array);
 
     if (optionList.length === 0) {
         return arrayFiltered;
     }
 
-    const lastOption = optionList.at(-1);
+    let inTheArray = [];
+    let recipesFiltered = [];
 
-    const inTheArray = [];
-    const recipesFiltered = [];
+    // eslint-disable-next-line no-restricted-syntax
+    for (const option of optionList) {
+        recipesFiltered = [];
+        inTheArray = [];
+        // eslint-disable-next-line no-loop-func
+        for (let i = 0; i < arrayFiltered.length; i += 1) {
+            const element = arrayFiltered[i];
+            const { appliance, ustensils, ingredients } = element;
 
-    for (let i = 0; i < arrayFiltered.length; i += 1) {
-        const element = arrayFiltered[i];
-        const { appliance, ustensils, ingredients } = element;
+            if (option.includes(appliance.toUpperCase())) {
+                if (!inTheArray.includes(element.name)) {
+                    recipesFiltered.push(element);
+                    inTheArray.push(element.name);
+                }
+            } else if (
+                ustensils.some((ustensil) => option.includes(ustensil.toUpperCase()))
+            ) {
+                if (!inTheArray.includes(element.name)) {
+                    recipesFiltered.push(element);
+                    inTheArray.push(element.name);
+                }
+            } else {
+                for (let j = 0; j < ingredients.length; j += 1) {
+                    const ingredientName = ingredients[j].ingredient.toUpperCase();
 
-        if (lastOption.includes(appliance.toUpperCase())) {
-            if (!inTheArray.includes(element.name)) {
-                recipesFiltered.push(element);
-                inTheArray.push(element.name);
-            }
-        } else if (
-            ustensils.some((ustensil) => lastOption.includes(ustensil.toUpperCase()))
-        ) {
-            if (!inTheArray.includes(element.name)) {
-                recipesFiltered.push(element);
-                inTheArray.push(element.name);
-            }
-        } else {
-            for (let j = 0; j < ingredients.length; j += 1) {
-                const ingredient = ingredients[j];
-                const ingredientName = ingredient.ingredient.toUpperCase();
-
-                if (lastOption.includes(ingredientName)) {
-                    if (!inTheArray.includes(element.name)) {
-                        recipesFiltered.push(element);
-                        inTheArray.push(element.name);
+                    if (option.includes(ingredientName)) {
+                        if (!inTheArray.includes(element.name)) {
+                            recipesFiltered.push(element);
+                            inTheArray.push(element.name);
+                        }
                     }
                 }
             }
         }
+        arrayFiltered = [...recipesFiltered];
     }
 
     return recipesFiltered;
