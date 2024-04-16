@@ -1,14 +1,17 @@
+/* eslint-disable newline-per-chained-call */
 // eslint-disable-next-line import/extensions
 import createElement from '../utils/createElement.js';
 
 const displayOptionSelected = (element) => {
     const divOptionsSelected = document.querySelector('#divOptionsSelected');
 
+    const id = `span-option-${element.toLowerCase().split(' ').join('-').split('\'').join('-')}`;
+
     const spanOptionSelected = createElement(
         'span',
         'bg-yellow px-4 py-3 flex justify-between items-center rounded-xl mr-6',
         element,
-        `span-option-${element.toLowerCase().split(' ')[0]}`,
+        id,
     );
 
     const closeOption = createElement(

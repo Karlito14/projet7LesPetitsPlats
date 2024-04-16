@@ -1,3 +1,4 @@
+/* eslint-disable newline-per-chained-call */
 /* eslint-disable no-use-before-define */
 /* eslint-disable import/extensions */
 import recipesList from '../../data/recipes.js';
@@ -144,7 +145,8 @@ function elementLiClick(ulElement) {
             let spanOptionSelected;
 
             if (optionSelectedList.includes(textContent.toUpperCase())) {
-                spanOptionSelected = document.querySelector(`#span-option-${textContent.toLowerCase().split(' ')[0]}`);
+                const id = `span-option-${textContent.toLowerCase().split(' ').join('-').split('\'').join('-')}`;
+                spanOptionSelected = document.querySelector(`#${id}`);
                 closeSpanOption(spanOptionSelected);
             } else {
                 optionSelectedList.push(textContent.toUpperCase());
