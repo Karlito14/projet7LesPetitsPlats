@@ -106,7 +106,7 @@ options.forEach((option) => {
         if (divOptions) {
             divOptions.remove();
         } else {
-            displayOptions(availableOptions, option);
+            displayOptions(availableOptions, option, optionSelectedList);
         }
 
         const inputOption = document.querySelector('#input-option');
@@ -127,14 +127,14 @@ options.forEach((option) => {
                 valueInput,
             );
 
-            forEachList(updatedOptions, optionClicked);
+            forEachList(updatedOptions, optionClicked, optionSelectedList);
 
             elementLiClick(optionClicked);
         });
 
         iconOption?.addEventListener('click', () => {
             deleteWithIcon(inputOption, iconOption);
-            forEachList(availableOptions, optionClicked);
+            forEachList(availableOptions, optionClicked, optionSelectedList);
             elementLiClick(optionClicked);
         });
     });
@@ -145,11 +145,19 @@ function elementLiClick(ulElement) {
     const allElementsLi = ulElement.querySelectorAll('li');
     allElementsLi.forEach((item) => {
         item.addEventListener('click', () => {
-            const spanOptionSelected = displayOptionSelected(item.textContent);
-            const iconCloseSpan = spanOptionSelected.querySelector('i');
+            const { textContent } = item;
+            let spanOptionSelected;
 
-            optionSelectedList.push(item.textContent.toUpperCase());
-            localStorage.setItem("options", JSON.stringify(optionSelectedList));
+            if(optionSelectedList.includes(textContent.toUpperCase())) {
+                spanOptionSelected = document.querySelector(`#span-option-${textContent.toLowerCase()}`);
+                closeSpanOption(spanOptionSelected);
+            } else {
+                optionSelectedList.push(textContent.toUpperCase());
+                localStorage.setItem("options", JSON.stringify(optionSelectedList));
+                spanOptionSelected = displayOptionSelected(textContent);
+            }
+
+            const iconCloseSpan = spanOptionSelected?.querySelector('i');
 
             updatedList = filterRecipes(
                 optionSelectedList,
@@ -157,12 +165,12 @@ function elementLiClick(ulElement) {
                 valueInputUpdated,
             );
 
+            closeDivOptions();
+
             recipesNumberToDisplay = index;
 
             displayRecipes(updatedList, valueInputUpdated, recipesNumberToDisplay);
             [appliances, ustensils, ingredients] = optionsFilter(updatedList);
-
-            closeDivOptions();
 
             iconCloseSpan.addEventListener('click', () => {
                 closeSpanOption(spanOptionSelected);
