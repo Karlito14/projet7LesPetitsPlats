@@ -4,11 +4,13 @@ import createElement from '../utils/createElement.js';
 const displayOptionSelected = (value) => {
     const divOptionsSelected = document.querySelector('#divOptionsSelected');
 
+    const id = `span-option-${value.toLowerCase().split(' ').join('-').split('\'').join('-')}`
+
     const spanOptionSelected = createElement(
         'span',
         'bg-yellow px-4 py-3 flex justify-between items-center rounded-xl mr-6',
         value[0] + value.slice(1).toLowerCase(),
-        `span-option-${value.toLowerCase().split(' ')[0]}`,
+        id,
     );
 
     const closeOption = createElement(
