@@ -149,7 +149,7 @@ function elementLiClick(ulElement) {
             let spanOptionSelected;
 
             if(optionSelectedList.includes(textContent.toUpperCase())) {
-                spanOptionSelected = document.querySelector(`#span-option-${textContent.toLowerCase()}`);
+                spanOptionSelected = document.querySelector(`#span-option-${textContent.toLowerCase().split(' ')[0]}`);
                 closeSpanOption(spanOptionSelected);
             } else {
                 optionSelectedList.push(textContent.toUpperCase());
