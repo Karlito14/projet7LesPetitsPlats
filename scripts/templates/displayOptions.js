@@ -8,7 +8,7 @@ const displayOptionSelected = (value) => {
         'span',
         'bg-yellow px-4 py-3 flex justify-between items-center rounded-xl mr-6',
         value[0] + value.slice(1).toLowerCase(),
-        `span-option-${value.toLowerCase()}`,
+        `span-option-${value.toLowerCase().split(' ')[0]}`,
     );
 
     const closeOption = createElement(
