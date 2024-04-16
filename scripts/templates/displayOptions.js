@@ -7,7 +7,8 @@ const displayOptionSelected = (value) => {
     const spanOptionSelected = createElement(
         'span',
         'bg-yellow px-4 py-3 flex justify-between items-center rounded-xl mr-6',
-        value,
+        value[0] + value.slice(1).toLowerCase(),
+        `span-option-${value.toLowerCase()}`,
     );
 
     const closeOption = createElement(
@@ -22,7 +23,7 @@ const displayOptionSelected = (value) => {
     return spanOptionSelected;
 };
 
-const forEachList = (array, elParent) => {
+const forEachList = (array, elParent, arrayOptions) => {
     let ulElement = elParent.querySelector('ul');
     ulElement?.remove();
 
@@ -31,12 +32,19 @@ const forEachList = (array, elParent) => {
     array.sort((a, b) => a.localeCompare(b));
 
     array.forEach((element) => {
-        const liElement = createElement(
-            'li',
-            'hover:bg-yellow cursor-pointer py-3 px-4',
-            element,
-            undefined,
-        );
+        let classList = 'hover:bg-yellow cursor-pointer py-3 px-4 relative';
+        let iconXMark;
+
+        if (arrayOptions.includes(element.toUpperCase())) {
+            classList += ' bg-yellow font-bold';
+            iconXMark = createElement('i', 'fa-solid fa-xmark absolute -translate-y-1/2 top-1/2 right-5 bg-black text-yellow px-1 py-0.5 rounded-full');
+        }
+
+        const liElement = createElement('li', classList, element, undefined);
+
+        if(iconXMark) {
+            liElement.appendChild(iconXMark);
+        }
 
         ulElement.appendChild(liElement);
     });
@@ -56,7 +64,7 @@ const closeDivOptions = () => {
     }
 };
 
-const displayOptions = (array, optionDiv) => {
+const displayOptions = (array, optionDiv, arrayOptions) => {
     const parentElement = optionDiv.closest('[data-name=div-parent]');
 
     // fermeture des autres options ouvertes
@@ -101,7 +109,7 @@ const displayOptions = (array, optionDiv) => {
 
     divOptions.addEventListener('click', (event) => event.stopPropagation());
 
-    forEachList(array, divOptions);
+    forEachList(array, divOptions, arrayOptions);
 
     parentElement.appendChild(divOptions);
 };
