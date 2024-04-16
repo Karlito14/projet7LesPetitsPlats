@@ -101,7 +101,7 @@ options.forEach((option) => {
         if (divOptions) {
             divOptions.remove();
         } else {
-            displayOptions(availableOptions, option);
+            displayOptions(availableOptions, option, optionSelectedList);
         }
 
         const inputOption = document.querySelector('#input-option');
@@ -122,14 +122,14 @@ options.forEach((option) => {
                 valueInput,
             );
 
-            forEachList(updatedOptions, optionClicked);
+            forEachList(updatedOptions, optionClicked, optionSelectedList);
 
             elementLiClick(optionClicked);
         });
 
         iconOption?.addEventListener('click', () => {
             deleteWithIcon(inputOption, iconOption);
-            forEachList(availableOptions, optionClicked);
+            forEachList(availableOptions, optionClicked, optionSelectedList);
             elementLiClick(optionClicked);
         });
     });
@@ -140,10 +140,18 @@ function elementLiClick(ulElement) {
     const allElementsLi = ulElement.querySelectorAll('li');
     allElementsLi.forEach((item) => {
         item.addEventListener('click', () => {
-            const spanOptionSelected = displayOptionSelected(item);
-            const iconCloseSpan = spanOptionSelected.querySelector('i');
+            const { textContent } = item;
+            let spanOptionSelected;
 
-            optionSelectedList.push(item.textContent.toUpperCase());
+            if (optionSelectedList.includes(textContent.toUpperCase())) {
+                spanOptionSelected = document.querySelector(`#span-option-${textContent.toLowerCase().split(' ')[0]}`);
+                closeSpanOption(spanOptionSelected);
+            } else {
+                optionSelectedList.push(textContent.toUpperCase());
+                spanOptionSelected = displayOptionSelected(textContent);
+            }
+
+            const iconCloseSpan = spanOptionSelected?.querySelector('i');
 
             updatedList = filterRecipes(
                 optionSelectedList,
@@ -157,21 +165,26 @@ function elementLiClick(ulElement) {
             closeDivOptions();
 
             iconCloseSpan.addEventListener('click', () => {
-                spanOptionSelected.remove();
-                const indexOption = optionSelectedList.indexOf(
-                    item.textContent.toUpperCase(),
-                );
-                optionSelectedList.splice(indexOption, 1);
-
-                updatedList = filterRecipes(
-                    optionSelectedList,
-                    recipesList,
-                    valueInputUpdated,
-                );
-
-                displayRecipes(updatedList);
-                [appliances, ustensils, ingredients] = optionsFilter(updatedList);
+                closeSpanOption(spanOptionSelected);
             });
         });
     });
+}
+
+function closeSpanOption(spanOption) {
+    const indexOption = optionSelectedList.indexOf(
+        spanOption.textContent.toUpperCase(),
+    );
+    optionSelectedList.splice(indexOption, 1);
+
+    updatedList = filterRecipes(
+        optionSelectedList,
+        recipesList,
+        valueInputUpdated,
+    );
+
+    displayRecipes(updatedList, valueInputUpdated);
+    [appliances, ustensils, ingredients] = optionsFilter(updatedList);
+
+    spanOption.remove();
 }
